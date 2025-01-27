@@ -1,0 +1,247 @@
+body {
+    font-family: 'Funnel Display';
+    background-image: url("images/bg.png");
+    background-size: cover;
+}
+
+/* Start of Navbar */
+
+.navbar {
+    display: flex;
+    gap: 50px;
+    width: 95%;
+    margin: auto;
+    margin-top: 25px;
+    align-items: center;
+}
+
+#nav-logo {
+    width: 120px;
+}
+
+#nav-profile, #nav-calendar, #nav-register, #nav-login {
+    background-color: #def9ff;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 20px;
+    width: 200px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+#nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover {
+    background-color: #93ebff;
+
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+#search-bar {
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    width: 500px;
+    height: 50px;
+    margin: 0px 55px 0px 55px;
+    padding: 20px;
+    font-size: 25px;
+    background-color: #def9ff;
+    color: black;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+/* End of Navbar */
+
+.main-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    height: 87.5vh;
+}
+
+
+/* Start of Left Section */
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 10px;
+}
+
+#filter-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color:#eefbfe;
+    border-radius: 10px;
+    margin: 25px 0.5% 20px 0.5%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#filter-title {
+    font-size: 35px;
+    margin: 35px 0px 10px 0px;
+}
+
+select {
+    width: 80%;
+    height: 40px;
+    margin: 25px auto 25px auto;
+    border: #acf0ff 1px solid;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #def9ff;
+}
+
+select:focus {
+    border-radius: 10px 10px 0px 0px;
+
+}
+
+#submit-btn {
+    width: 40%;
+    height: 40px;
+    margin: 10px auto 40px auto;
+    border: #acf0ff 1px solid;
+    border-radius: 20px;
+    background-color: #def9ff;
+    font-size: 20px;
+}
+
+#submit-btn:hover {
+    cursor: pointer;
+    background-color: #93ebff;
+}
+
+.weather {
+    display: flex;
+    margin-left: 0.5%;
+    background-color: #eefbfe;
+    border-radius: 10px;
+    gap: 20px;
+    padding: 10px 0px 10px 35px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* End of left section */
+
+/* Start of center section */
+
+.center-section {
+    flex: 2;
+    margin-top: 25px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    height: 87.5vh;
+    border-radius: 10px;
+}
+
+.center-section::-webkit-scrollbar {
+    background-color: #eefbfe;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.center-section::-webkit-scrollbar-thumb {
+    background-color: #b1e6f1; /* Color of the thumb */
+    border-radius: 10px; /* Rounded edges for the thumb */
+    border: #eefbfe 3px solid;
+    width: 50%;
+}
+
+.activity {
+    display: flex;
+    width: 97%;
+    background-color: #eefbfe;
+    border-radius: 20px;
+    margin: 0px auto 20px auto;
+}
+
+.activity:last-child {
+    margin-bottom: 0px;
+}
+
+#activity-img {
+    width: 90%;
+    border-radius: 20px;
+    margin: 18px;
+}
+
+.activity-info {
+    width: 65%;
+}
+
+.activity-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#activity-title {
+    margin: 25px 0px 0px 5px
+}
+
+.fa:hover {
+    cursor: pointer;
+}
+
+.activity-list {
+    display: flex;
+    gap: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 17px;
+    margin-left: 10px;
+}
+/* End of center section */
+
+/* Start of right section */
+
+.right-section {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.budget {
+    background-color: #eefbfe;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-top: 25px;
+    padding: 35px 0px 0px 0px;
+}
+
+#current-budget {
+    font-size: 35px;
+    width: 65%;
+    margin: 0px auto 80px auto;
+}
+
+#btn-save {
+    width: 40%;
+    height: 40px;
+    margin: 10px auto 40px auto;
+    border: #acf0ff 1px solid;
+    border-radius: 20px;
+    background-color: #def9ff;
+    font-size: 20px;
+}
+
+#btn-save:hover {
+    cursor: pointer;
+    background-color: #93ebff;
+}
+
+/* End of right section */
