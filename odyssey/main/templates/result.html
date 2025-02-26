@@ -1,17 +1,18 @@
+<!-- {% load static %} -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="{% static 'result.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/result.css' %}">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
         <script src="{% static 'result.js' %}"></script>
-        <link rel="icon" href="images/logo-nav-placeholder.png">
+        <link rel="icon" href="{% static 'images/result/Logo3.png' %}images/Logo3.png">
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <title>Travel</title>
+        <title>Odyssey</title>
     </head>
     <body>
         <div class="navbar">
-            <a href="index.html"><img id="nav-logo" src="images/logo-lb.png"></a>
+            <a href="index.html"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
             <a id="nav-profile" href="index.html">Profile</a>
             <a id="nav-calendar" href="index.html">Calendar</a>
             <input type="search" id="search-bar" placeholder="search">
@@ -59,12 +60,11 @@
             <div class="center-section">
                 <div class="activity sld1">
                     <div class="activity-img">
-                        <img id="activity-img" src="images/sagrada.png">
+                        <img id="activity-img" src="{% static 'images/result/sagrada.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Sagrada Família Tour - £25</h1>
-                            <i class="fa fa-plus" style="font-size:30px"></i>
                         </div>
                         <p>Explore Antoni Gaudí's masterpiece, known for its intricate architecture.</p>
                         <div class="activity-list">
@@ -83,12 +83,11 @@
                 </div>
                 <div class="activity sld2">
                     <div class="activity-img">
-                        <img id="activity-img" src="images/Tibidabo.png">
+                        <img id="activity-img" src="{% static 'images/result/Tibidabo.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Tibidabo Amusement Park - £35</h1>
-                            <i class="fa fa-plus" style="font-size:30px"></i>
                         </div>
                         <p>Enjoy thrilling rides at this historic amusement park atop Mount Tibidabo.</p>
                         <div class="activity-list">
@@ -107,12 +106,11 @@
                 </div>
                 <div class="activity sld3">
                     <div class="activity-img">
-                        <img id="activity-img" src="images/barca.png">
+                        <img id="activity-img" src="{% static 'images/result/barca.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Camp Nou Tour - £20</h1>
-                            <i class="fa fa-plus" style="font-size:30px"></i>
                         </div>
                         <p>Tour FC Barcelona's iconic stadium.</p>
                         <div class="activity-list">
@@ -131,12 +129,11 @@
                 </div>
                 <div class="activity sld3">
                     <div class="activity-img">
-                        <img id="activity-img" src="images/cable.png">
+                        <img id="activity-img" src="{% static 'images/result/cable.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Montjuïc Cable Car - £14</h1>
-                            <i class="fa fa-plus" style="font-size:30px"></i>
                         </div>
                         <p>Tour FC Barcelona's iconic stadium.</p>
                         <div class="activity-list">

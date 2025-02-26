@@ -1,8 +1,8 @@
+from django.template import loader
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("Home")
+    return render(request, "home.html")
 
 def result(request):
-    return HttpResponse("Result")
+    return render(request, "result.html")
