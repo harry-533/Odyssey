@@ -21,21 +21,18 @@
         </div>
         <div class="main-section">
             <div class="main-right">
-                <form id="main-form">
+                <form id="main-form" method="post" action="{% url 'home' %}">
+                    {% csrf_token %}
                     <img id="form-logo" src="{% static 'images/result/logo-lb.png' %}">
-                    <select id="dropdown-countries" required>
-                        <option value="" disabled selected>Choose a destination</option>
-                        <option value="option1">Barcelona</option>
-                        <option value="option2">Paris</option>
-                        <option value="option3">Budapest</option>
-                        <option value="option4">Amsterdam</option>
-                    </select>
+                    <div class="destination-container">
+                        <input type="text" id="destination-input" name="destination" placeholder="Travelling to">
+                    </div>
                     <div class="budget-container">
                         <input type="text" id="budget-input" name="budget" placeholder="Input your budget">
                     </div>
                     <div class="date-input">
-                        <input type="date" id="date-input" name="date-from">
-                        <input type="date" id="date-input" name="date-to">
+                        <input type="date" id="date-input" name="date_from">
+                        <input type="date" id="date-input" name="date_to">
                     </div>
                     <button type="submit" id="form-search">Search</button>
                 </form>
