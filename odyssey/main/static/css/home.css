@@ -67,7 +67,7 @@ body {
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
 }
 
-#dropdown-countries, #budget-input {
+#dropdown-countries, #budget-input{
     width: 480px;
     box-sizing: border-box; 
     border-radius: 5px;
