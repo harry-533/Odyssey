@@ -118,16 +118,16 @@ select:focus {
     background-color: #93ebff;
 }
 
-/* .weather {
+.weather {
     display: flex;
-    margin-left: 0.5%;
     background-color: #eefbfe;
     border-radius: 10px;
     gap: 20px;
-    padding: 10px 0px 10px 35px;
+    padding: 10px 0px 10px 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     height: 250px;
-} */
+    align-items: center;
+}
 
 /* End of left section */
 
