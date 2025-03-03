@@ -1,6 +1,6 @@
 from django.template import loader
 from django.shortcuts import render, redirect
-from .models import JourneyInformation
+from models import JourneyInformation
 
 def home(request):
     if request.method == 'POST':
@@ -14,9 +14,10 @@ def home(request):
             budget=budget,
             date_from=date_from,
             date_to=date_to
+            
         )
 
-        return redirect('result.html')
+        return redirect('result')
     
     return render(request, "home.html")
 
