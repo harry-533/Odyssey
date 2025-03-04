@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{% static 'css/global.css' %}">
         <script src="{% static 'result.js' %}"></script>
         <link rel="icon" href="{% static 'images/result/Logo3.png' %}images/Logo3.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Odyssey</title>
     </head>
@@ -66,6 +67,7 @@
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Sagrada Família Tour - £25</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Explore Antoni Gaudí's masterpiece, known for its intricate architecture.</p>
                         <div class="activity-list">
@@ -89,6 +91,7 @@
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Tibidabo Amusement Park - £35</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Enjoy thrilling rides at this historic amusement park atop Mount Tibidabo.</p>
                         <div class="activity-list">
@@ -112,6 +115,7 @@
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Camp Nou Tour - £20</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Tour FC Barcelona's iconic stadium.</p>
                         <div class="activity-list">
@@ -128,13 +132,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="activity sld3">
+                <div class="activity sld4">
                     <div class="activity-img">
                         <img id="activity-img" src="{% static 'images/result/cable.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Montjuïc Cable Car - £14</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Tour FC Barcelona's iconic stadium.</p>
                         <div class="activity-list">
@@ -151,13 +156,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="activity sld3">
+                <div class="activity sld5">
                     <div class="activity-img">
                         <img id="activity-img" src="{% static 'images/result/guell.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Park Güell - £10</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Explore the Mosaic-filled park.</p>
                         <div class="activity-list">
@@ -174,13 +180,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="activity sld4">
+                <div class="activity sld6">
                     <div class="activity-img">
                         <img id="activity-img" src="{% static 'images/result/gothic.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
-                            <h1 id="activity-title">Gothic Quarter - Free</h1>
+                            <h1 id="activity-title">Gothic Quarter - £0</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Medieval streets and historic landmarks.</p>
                         <div class="activity-list">
@@ -197,13 +204,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="activity sld5">
+                <div class="activity sld7">
                     <div class="activity-img">
                         <img id="activity-img" src="{% static 'images/result/batllo.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
                             <h1 id="activity-title">Casa Batlló - £35</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Gaudí’s colorful architectural masterpiece.</p>
                         <div class="activity-list">
@@ -220,13 +228,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="activity sld6">
+                <div class="activity sld8">
                     <div class="activity-img">
                         <img id="activity-img" src="{% static 'images/result/beach.png' %}">
                     </div>
                     <div class="activity-info">
                         <div class="activity-header">
-                            <h1 id="activity-title">Barceloneta Beach - Free</h1>
+                            <h1 id="activity-title">Barceloneta Beach - £0</h1>
+                            <h1 id="add-btn">+</h1>
                         </div>
                         <p>Popular urban beach near the city.</p>
                         <div class="activity-list">
@@ -247,6 +256,21 @@
             <div class="right-section">
                 <div class="budget">
                     <h2 id="current-budget">Budget - £250</h2>
+                    <div class="chosen-activities">
+                        <div class="chosen sld1">
+                            <div class="chosen-img">
+                                <img id="chosen-img" src="{% static 'images/result/beach.png' %}">
+                            </div>
+                            <div class="chosen-info">
+                                <div class="chosen-header">
+                                    <h1 id="chosen-title">Barceloneta Beach</h1>
+                                    <i class="fa fa-minus"></i>
+                                </div>
+                                <h1 id="chosen-detail">£0, Relaxation, All ages</h1>
+                                <p id="chosen-desc">Popular urban beach near the city.</p>
+                            </div>
+                        </div>
+                    </div>
                     <button id="btn-save">Save</button>
                 </div>
             </div>
