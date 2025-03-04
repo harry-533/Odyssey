@@ -149,8 +149,8 @@ select:focus {
 }
 
 .center-section::-webkit-scrollbar-thumb {
-    background-color: #b1e6f1; /* Color of the thumb */
-    border-radius: 10px; /* Rounded edges for the thumb */
+    background-color: #b1e6f1;
+    border-radius: 10px;
     border: #eefbfe 3px solid;
     width: 50%;
 }
@@ -185,7 +185,17 @@ select:focus {
 }
 
 #activity-title {
-    margin: 25px 0px 0px 5px
+    margin: 25px 0px 0px 5px;
+}
+
+#add-btn {
+    font-size: 50px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#add-btn:hover {
+    cursor: pointer;
 }
 
 .fa:hover {
@@ -221,20 +231,90 @@ p {
     justify-content: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     margin-top: 25px;
-    padding: 35px 0px 0px 0px;
-    height: 775px;
+    height: 87.5vh;
 }
 
 #current-budget {
     font-size: 35px;
     width: 65%;
-    margin: 0px auto 80px auto;
+    padding-top: 35px;
+    margin: 0px auto 0px auto;
+}
+
+.chosen-activities {
+    margin-top: 35px;
+    margin: 35px auto 0px auto;
+    height: 72%;
+    width: 92%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.chosen-activities::-webkit-scrollbar {
+    background-color: #eefbfe;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.chosen-activities::-webkit-scrollbar-thumb {
+    background-color: #b1e6f1;
+    border-radius: 10px;
+    border: #eefbfe 3px solid;
+    width: 50%;
+}
+
+.chosen {
+    display: flex;
+    background-color: #a5e6ff;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#chosen-img {
+    width: 150px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.chosen-info {
+    text-align: left;
+}
+
+.chosen-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+#chosen-title {
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#chosen-detail {
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+}
+
+.fa {
+    font-size: 30px;
+    margin: 0px 15px 0px 15px;
+}
+
+.fa:hover {
+    cursor: pointer;
+}
+
+#chosen-desc {
+    margin-left: 0px;
 }
 
 #btn-save {
     width: 40%;
     height: 40px;
-    margin: 550px auto 40px auto;
+    margin: 35px auto 40px auto;
     border: #acf0ff 1px solid;
     border-radius: 20px;
     background-color: #def9ff;
