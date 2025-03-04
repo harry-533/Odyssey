@@ -16,7 +16,11 @@ def home(request):
     
     return render(request, "home.html", {'form': form})
 
-def result(request, pk):
-    journey = get_object_or_404(JourneyInformation, pk=pk)
-    
-    return render(request, "result.html", {'journey': journey})
+def result(request):
+    return render(request, "result.html")
+
+# def result(request, pk):
+
+#     journey = get_object_or_404(JourneyInformation, pk=pk)
+
+#     return render(request, "result.html", {'journey': journey})
