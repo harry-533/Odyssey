@@ -23,16 +23,21 @@
             <div class="main-right">
                 <form id="main-form" method="post" action="{% url 'home' %}">
                     {% csrf_token %}
+                    {{form.non_field_errors}}
                     <img id="form-logo" src="{% static 'images/result/logo-lb.png' %}">
                     <div class="destination-container">
-                        <input type="text" id="dropdown-countries" name="destination" placeholder="Travelling to">
+                        <input type="text" id="dropdown-countries" name="destination" placeholder="Travelling to" autocomplete="off">
+                        {{form.destination.errors}}
                     </div>
                     <div class="budget-container">
-                        <input type="text" id="budget-input" name="budget" placeholder="Input your budget">
+                        <input type="text" id="budget-input" name="budget" placeholder="Input your budget" autocomplete="off">
+                        {{form.budget.errors}}
                     </div>
                     <div class="date-input">
                         <input type="date" id="date-input" name="date_from">
+                        {{form.date_from.errors}}
                         <input type="date" id="date-input" name="date_to">
+                        {{form.date_from.errors}}
                     </div>
                     <button type="submit" id="form-search">Search</button>
                 </form>
