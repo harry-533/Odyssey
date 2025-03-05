@@ -87,7 +87,7 @@ body {
     margin: 35px 0px 10px 0px;
 }
 
-select {
+#dropdown {
     width: 80%;
     height: 40px;
     margin: 25px auto 25px auto;
@@ -98,9 +98,34 @@ select {
     background-color: #def9ff;
 }
 
-select:focus {
+#dropdown:focus {
     border-radius: 10px 10px 0px 0px;
 
+}
+
+.price-filter {
+    display: flex;
+    gap: 15px;
+}
+
+#price-dropdown-left, #price-dropdown-right {
+    width: 38%;
+    height: 40px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: #acf0ff 1px solid;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #def9ff;
+}
+
+#price-dropdown-left {
+    margin-left: auto;
+}
+
+#price-dropdown-right {
+    margin-right: auto;
 }
 
 #submit-btn {
