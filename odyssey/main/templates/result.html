@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{% static 'css/result.css' %}">
         <link rel="stylesheet" href="{% static 'css/global.css' %}">
         <script src="{% static 'js/result.js' %}"></script>
-        <link rel="icon" href="{% static 'images/result/Logo3.png' %}images/Logo3.png">
+        <link rel="icon" href="{% static 'images/result/Logo3.png' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Odyssey</title>
@@ -16,7 +16,7 @@
             <a href="index.html"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
             <a id="nav-profile" href="index.html">Profile</a>
             <a id="nav-calendar" href="index.html">Calendar</a>
-            <input type="search" id="search-bar" placeholder="search">
+            <input type="text" id="search-bar" placeholder="search">
             <span id="nav-register">Register</span>
             <span id="nav-login">Login</span>
         </div>
@@ -70,195 +70,205 @@
                 </div>
             </div> 
             <div class="center-section">
-                <div class="activity sld1">
-                    <div class="activity-img">
-                        <img class="img1" id="activity-img" src="{% static 'images/result/sagrada.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title1" id="activity-title">Sagrada Família Tour - £25</h1>
-                            <h1 class="btn-1" id="add-btn">+</h1>
+                <form>
+                    <select id="sort-by" onchange='sortSubmit(this.value);'>
+                        <option value="0" disabled selected>Sort by</option>
+                        <option value="low-high">Price: Low to high</option>
+                        <option value="high-low">Price: High to low</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </form>
+                <div class="activities">
+                    <div class="activity sld1">
+                        <div class="activity-img">
+                            <img class="img1" id="activity-img" src="{% static 'images/result/sagrada.png' %}">
                         </div>
-                        <p class="desc1">Explore Antoni Gaudí's masterpiece, known for its intricate architecture.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type1">Activity type: Cultural</li>
-                                <li>Group size: 1+</li>
-                                <li class="age1">Recommended Age: 8+</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 2 hours</li>
-                                <li class="popular1">Popularity: ⭐⭐⭐⭐⭐</li>
-                                <li class="access1">Accessibility: Partially accessible</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity sld2">
-                    <div class="activity-img">
-                        <img class="img2" id="activity-img" src="{% static 'images/result/Tibidabo.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title2" id="activity-title">Tibidabo Amusement Park - £35</h1>
-                            <h1 class="btn-2" id="add-btn">+</h1>
-                        </div>
-                        <p class="desc2">Enjoy thrilling rides at this historic amusement park atop Mount Tibidabo.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type2">Activity type: Adventure</li>
-                                <li>Group size: 1+</li>
-                                <li class="age2">Recommended Age: 6+</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 3-4 hours</li>
-                                <li class="popular2">Popularity: ⭐⭐⭐⭐☆</li>
-                                <li class="access2">Accessibility: Fully accessible</li>
-                            </ul>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title1" id="activity-title">Sagrada Família Tour - £25</h1>
+                                <h1 class="btn-1" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc1">Explore Antoni Gaudí's masterpiece, known for its intricate architecture.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type1">Activity type: Cultural</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age1">Recommended Age: 8+</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 2 hours</li>
+                                    <li class="popular1" id="popularity">Popularity: ⭐⭐⭐⭐⭐</li>
+                                    <li class="access1">Accessibility: Partially accessible</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="activity sld3">
-                    <div class="activity-img">
-                        <img class="img3" id="activity-img" src="{% static 'images/result/barca.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title3" id="activity-title">Camp Nou Tour - £20</h1>
-                            <h1 class="btn-3" id="add-btn">+</h1>
+                    <div class="activity sld2">
+                        <div class="activity-img">
+                            <img class="img2" id="activity-img" src="{% static 'images/result/Tibidabo.png' %}">
                         </div>
-                        <p class="desc3">Tour FC Barcelona's iconic stadium.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type3">Activity type: Sports</li>
-                                <li>Group size: 1+</li>
-                                <li class="age3">Recommended Age: All ages</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 1 hour</li>
-                                <li class="popular3">Popularity: ⭐⭐⭐⭐☆</li>
-                                <li class="access3">Accessibility: Limited accessibility</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity sld4">
-                    <div class="activity-img">
-                        <img class="img4" id="activity-img" src="{% static 'images/result/cable.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title4" id="activity-title">Montjuïc Cable Car - £14</h1>
-                            <h1 class="btn-4" id="add-btn">+</h1>
-                        </div>
-                        <p class="desc4">Cable car to the top of Montjuïc mountain.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type4">Activity type: Relaxation</li>
-                                <li>Group size: 1+</li>
-                                <li class="age4">Recommended Age: All ages</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 1 hour</li>
-                                <li class="popular4">Popularity: ⭐⭐⭐⭐☆</li>
-                                <li class="access4">Accessibility: Fully accessible</li>
-                            </ul>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title2" id="activity-title">Tibidabo Amusement Park - £35</h1>
+                                <h1 class="btn-2" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc2">Enjoy thrilling rides at this historic amusement park atop Mount Tibidabo.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type2">Activity type: Adventure</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age2">Recommended Age: 6+</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 3-4 hours</li>
+                                    <li class="popular2" id="popularity">Popularity: ⭐⭐⭐⭐☆</li>
+                                    <li class="access2">Accessibility: Fully accessible</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="activity sld5">
-                    <div class="activity-img">
-                        <img class="img5" id="activity-img" src="{% static 'images/result/guell.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title5" id="activity-title">Park Güell - £10</h1>
-                            <h1 class="btn-5" id="add-btn">+</h1>
+                    <div class="activity sld3">
+                        <div class="activity-img">
+                            <img class="img3" id="activity-img" src="{% static 'images/result/barca.png' %}">
                         </div>
-                        <p class="desc5">Explore the Mosaic-filled park.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type5">Activity type: Cultural</li>
-                                <li>Group size: 1+</li>
-                                <li class="age5">Recommended Age: All ages</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 1-2 hours</li>
-                                <li class="popular5">Popularity: ⭐⭐⭐⭐☆</li>
-                                <li class="access5">Accessibility: Partially accessible</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity sld6">
-                    <div class="activity-img">
-                        <img class="img6" id="activity-img" src="{% static 'images/result/gothic.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title6" id="activity-title">Gothic Quarter - £0</h1>
-                            <h1 class="btn-6" id="add-btn">+</h1>
-                        </div>
-                        <p class="desc6">Medieval streets and historic landmarks.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type6">Activity type: Cultural</li>
-                                <li>Group size: 1+</li>
-                                <li class="age6">Recommended Age: All ages</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 1-2 hours</li>
-                                <li class="popular6">Popularity: ⭐⭐⭐☆☆</li>
-                                <li class="access6">Accessibility: Partially accessible</li>
-                            </ul>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title3" id="activity-title">Camp Nou Tour - £20</h1>
+                                <h1 class="btn-3" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc3">Tour FC Barcelona's iconic stadium.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type3">Activity type: Sports</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age3">Recommended Age: All ages</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 1 hour</li>
+                                    <li class="popular3" id="popularity">Popularity: ⭐⭐⭐⭐☆</li>
+                                    <li class="access3">Accessibility: Limited accessibility</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="activity sld7">
-                    <div class="activity-img">
-                        <img class="img7" id="activity-img" src="{% static 'images/result/batllo.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title7" id="activity-title">Casa Batlló - £35</h1>
-                            <h1 class="btn-7" id="add-btn">+</h1>
+                    <div class="activity sld4">
+                        <div class="activity-img">
+                            <img class="img4" id="activity-img" src="{% static 'images/result/cable.png' %}">
                         </div>
-                        <p class="desc7">Gaudí’s colorful architectural masterpiece.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type7">Activity type: Cultural</li>
-                                <li>Group size: 1+</li>
-                                <li class="age7">Recommended Age: All ages</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 1-2 hours</li>
-                                <li class="popular7">Popularity: ⭐⭐⭐⭐⭐</li>
-                                <li class="access7">Accessibility: Fully accessible</li>
-                            </ul>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title4" id="activity-title">Montjuïc Cable Car - £14</h1>
+                                <h1 class="btn-4" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc4">Cable car to the top of Montjuïc mountain.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type4">Activity type: Relaxation</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age4">Recommended Age: All ages</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 1 hour</li>
+                                    <li class="popular4" id="popularity">Popularity: ⭐⭐⭐⭐☆</li>
+                                    <li class="access4">Accessibility: Fully accessible</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="activity sld8">
-                    <div class="activity-img">
-                        <img class="img8" id="activity-img" src="{% static 'images/result/beach.png' %}">
-                    </div>
-                    <div class="activity-info">
-                        <div class="activity-header">
-                            <h1 class="title8" id="activity-title">Barceloneta Beach - £0</h1>
-                            <h1 class="btn-8" id="add-btn">+</h1>
+                    <div class="activity sld5">
+                        <div class="activity-img">
+                            <img class="img5" id="activity-img" src="{% static 'images/result/guell.png' %}">
                         </div>
-                        <p class="desc8">Popular urban beach near the city.</p>
-                        <div class="activity-list">
-                            <ul>
-                                <li class="type8">Activity type: Relaxation</li>
-                                <li>Group size: 1+</li>
-                                <li class="age8">Recommended Age: All ages</li>
-                            </ul>
-                            <ul>
-                                <li>Duration: 3-4 hours</li>
-                                <li class="popular8">Popularity: ⭐⭐⭐⭐☆</li>
-                                <li class="access8">Accessibility: Fully accessible</li>
-                            </ul>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title5" id="activity-title">Park Güell - £10</h1>
+                                <h1 class="btn-5" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc5">Explore the Mosaic-filled park.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type5">Activity type: Cultural</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age5">Recommended Age: All ages</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 1-2 hours</li>
+                                    <li class="popular5" id="popularity">Popularity: ⭐⭐⭐⭐☆</li>
+                                    <li class="access5">Accessibility: Partially accessible</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity sld6">
+                        <div class="activity-img">
+                            <img class="img6" id="activity-img" src="{% static 'images/result/gothic.png' %}">
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title6" id="activity-title">Gothic Quarter - £0</h1>
+                                <h1 class="btn-6" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc6">Medieval streets and historic landmarks.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type6">Activity type: Cultural</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age6">Recommended Age: All ages</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 1-2 hours</li>
+                                    <li class="popular6" id="popularity">Popularity: ⭐⭐⭐☆☆</li>
+                                    <li class="access6">Accessibility: Partially accessible</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity sld7">
+                        <div class="activity-img">
+                            <img class="img7" id="activity-img" src="{% static 'images/result/batllo.png' %}">
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title7" id="activity-title">Casa Batlló - £35</h1>
+                                <h1 class="btn-7" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc7">Gaudí’s colorful architectural masterpiece.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type7">Activity type: Cultural</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age7">Recommended Age: All ages</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 1-2 hours</li>
+                                    <li class="popular7" id="popularity">Popularity: ⭐⭐⭐⭐⭐</li>
+                                    <li class="access7">Accessibility: Fully accessible</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity sld8">
+                        <div class="activity-img">
+                            <img class="img8" id="activity-img" src="{% static 'images/result/beach.png' %}">
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title8" id="activity-title">Barceloneta Beach - £0</h1>
+                                <h1 class="btn-8" id="add-btn">+</h1>
+                            </div>
+                            <p class="desc8">Popular urban beach near the city.</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type8">Activity type: Relaxation</li>
+                                    <li>Group size: 1+</li>
+                                    <li class="age8">Recommended Age: All ages</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: 3-4 hours</li>
+                                    <li class="popular8" id="popularity">Popularity: ⭐⭐⭐⭐☆</li>
+                                    <li class="access8">Accessibility: Fully accessible</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

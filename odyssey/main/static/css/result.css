@@ -33,7 +33,6 @@ body {
 
 #nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover {
     background-color: #93ebff;
-
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
@@ -43,7 +42,7 @@ body {
     outline: none;
     border: none;
     width: 500px;
-    height: 50px;
+    height: 15px;
     margin: 0px 55px 0px 55px;
     padding: 20px;
     font-size: 25px;
@@ -158,22 +157,36 @@ body {
 
 /* Start of center section */
 
+#sort-by {
+    width: 18%;
+    height: 30px;
+    margin: 25px 0px 5px 35px;
+    border: #acf0ff 1px solid;
+    border-radius: 10px;
+    font-size: 12px;
+    padding-left: 10px;
+    background-color: #def9ff;
+}
+
 .center-section {
     flex: 2;
-    margin-top: 25px;
+}
+
+.activities {
+    margin-top: 0px;
     overflow-y: auto;
     scroll-behavior: smooth;
-    height: 87.5vh;
+    height: 83.5vh;
     border-radius: 10px;
 }
 
-.center-section::-webkit-scrollbar {
+.activities::-webkit-scrollbar {
     background-color: #eefbfe;
     border-radius: 10px;
     margin-left: 10px;
 }
 
-.center-section::-webkit-scrollbar-thumb {
+.activities::-webkit-scrollbar-thumb {
     background-color: #b1e6f1;
     border-radius: 10px;
     border: #eefbfe 3px solid;
@@ -290,7 +303,8 @@ p {
 
 .chosen {
     display: flex;
-    background-color: #a5e6ff;
+    background-color: #dbf5ff;
+    box-shadow: 0 0 5px rgba(93, 134, 155, 0.2);
     border-radius: 10px;
     margin: 10px;
 }
