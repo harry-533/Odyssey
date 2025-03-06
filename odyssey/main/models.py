@@ -12,4 +12,19 @@ class JourneyInformation(models.Model):
     def __str__(self):
         return f"{self.id} : {self.destination} with a budget of {self.budget}"
 
-# Create your models here.
+class Activity(models.Model):
+    activity_city = models.CharField(max_length=64)
+    activity_image = models.CharField(max_length=64)
+    activity_title = models.CharField(max_length=64)
+    activity_price = models.CharField(max_length=8)
+    activity_desc = models.CharField(max_length=256)
+    activity_short_desc = models.CharField(max_length=64)
+    activity_type = models.CharField(max_length=16)
+    activity_group_size = models.CharField(max_length=16)
+    activity_age = models.CharField(max_length=16)
+    activity_duration = models.CharField(max_length=16)
+    activity_popularity = models.CharField(max_length=16)
+    activity_accessibility = models.CharField(max_length=16)
+
+    def __str__(self):
+        return f"{self.activity_city} - {self.activity_title}"
