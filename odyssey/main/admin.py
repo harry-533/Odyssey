@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import JourneyInformation
+from .models import JourneyInformation, Activity
 
 admin.site.register(JourneyInformation)
-
-# Register your models here.
+admin.site.register(Activity)

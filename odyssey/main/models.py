@@ -14,7 +14,7 @@ class JourneyInformation(models.Model):
 
 class Activity(models.Model):
     activity_city = models.CharField(max_length=64)
-    activity_image = models.CharField(max_length=64)
+    activity_image = models.CharField(max_length=64, blank=True)
     activity_title = models.CharField(max_length=64)
     activity_price = models.CharField(max_length=8)
     activity_desc = models.CharField(max_length=256)
