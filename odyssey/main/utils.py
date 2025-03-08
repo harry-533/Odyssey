@@ -6,9 +6,26 @@ def get_activities():
 
     model = "mistral"
 
+    # cities = [
+    #     'Bangkok', 'Paris', 'London', 'Dubai', 'Singapore', 'New York', 'Kuala Lumpur', 
+    #     'Istanbul', 'Tokyo', 'Antalya', 'Seoul', 'Osaka', 'Makkah', 'Hong Kong', 
+    #     'Milan', 'Barcelona', 'Pattaya', 'Bali', 'Shanghai', 'Las Vegas', 'Amsterdam', 
+    #     'Los Angeles', 'Miami', 'Vienna', 'Prague', 'Rome', 'Taipei', 'Guangzhou', 
+    #     'Delhi', 'Cairo', 'Berlin', 'Moscow', 'Madrid', 'Beijing', 'Ho Chi Minh City', 
+    #     'Munich', 'Dublin', 'Toronto', 'Jakarta', 'Lisbon', 'Sydney', 'Budapest', 
+    #     'Mexico City', 'Doha', 'Rio de Janeiro', 'Buenos Aires', 'Athens', 'Stockholm', 
+    #     'Warsaw', 'Edinburgh', 'Brussels', 'San Francisco', 'Florence', 'Chengdu', 
+    #     'Marrakech', 'Hanoi', 'Manila', 'Zurich', 'Geneva', 'Venice', 'Riyadh', 
+    #     'Johannesburg', 'Shenzhen', 'Boston', 'Copenhagen', 'Vancouver', 'Melbourne', 
+    #     'Abu Dhabi', 'Phuket', 'Nice', 'Krakow', 'Chennai', 'Cape Town', 'Brisbane', 
+    #     'Lyon', 'Lima', 'Bogotá', 'Montreal', 'Kolkata', 'Birmingham', 'Saint Petersburg', 
+    #     'Seattle', 'Nagoya', 'Kyoto', 'Macau', 'Hamburg', 'Frankfurt', 'Tel Aviv', 
+    #     'Munich', 'Marseille', 'Sao Paulo', 'Auckland', 'Porto', 'Valencia', 'Oslo', 
+    #     'Gothenburg', 'Bucharest', 'Belfast', 'Helsinki', 'Perth', 'Santiago', 'Taiyuan', 
+    #     'Nagoya', 'Athens', 'Christchurch', 'Colombo'
+    # ]
+
     cities = [
-        'Bangkok', 'Paris', 'London', 'Dubai', 'Singapore', 'New York', 'Kuala Lumpur', 
-        'Istanbul', 'Tokyo', 'Antalya', 'Seoul', 'Osaka', 'Makkah', 'Hong Kong', 
         'Milan', 'Barcelona', 'Pattaya', 'Bali', 'Shanghai', 'Las Vegas', 'Amsterdam', 
         'Los Angeles', 'Miami', 'Vienna', 'Prague', 'Rome', 'Taipei', 'Guangzhou', 
         'Delhi', 'Cairo', 'Berlin', 'Moscow', 'Madrid', 'Beijing', 'Ho Chi Minh City', 
@@ -22,7 +39,7 @@ def get_activities():
         'Seattle', 'Nagoya', 'Kyoto', 'Macau', 'Hamburg', 'Frankfurt', 'Tel Aviv', 
         'Munich', 'Marseille', 'Sao Paulo', 'Auckland', 'Porto', 'Valencia', 'Oslo', 
         'Gothenburg', 'Bucharest', 'Belfast', 'Helsinki', 'Perth', 'Santiago', 'Taiyuan', 
-        'Nagoya', 'Athens', 'Christchurch', 'Colombo'
+        'Nagoya', 'Athens', 'Christchurch', 'Colombo', 'Hong Kong'
     ]
 
     for i in cities:
@@ -51,10 +68,10 @@ def get_activities():
         for j in responses:
             if not first:
                 activity.append(j)
+                count += 1
             else:
                 first = False
-            count += 1
-            if count == 11:
+            if count == 10:
                 total_activities.append(activity)  
                 activity = []
                 count = 0
@@ -65,7 +82,7 @@ def get_activities():
             for activity in range(len(item)):
                 for detail in range(len(all_activities[key][activity])):
                     if detail == 9:
-                        all_activities[key][activity][detail] = all_activities[key][activity][detail].lstrip().rstrip()[:-6]
+                        all_activities[key][activity][detail] = all_activities[key][activity][detail].lstrip().rstrip()
                     else:
                         all_activities[key][activity][detail] = all_activities[key][activity][detail].lstrip().rstrip()
                     try:
