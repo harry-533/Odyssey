@@ -1,7 +1,9 @@
 from django.template import loader
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JourneyInformationForm
 from .models import JourneyInformation
+from .utils import cities
 
 
 def home(request):
@@ -18,6 +20,12 @@ def home(request):
 
 def result(request):
     return render(request, "result.html")
+
+def autocomplete_cities(request):
+    query = request.GET.get('term', '').lower()
+    results = [city for city in cities if query in city.lower()][:5]
+    return JsonResponse(results, safe=False)
+
 
 # def result(request, pk):
 
