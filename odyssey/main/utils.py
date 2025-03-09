@@ -77,4 +77,39 @@ def get_activities():
                     print('fail')
 
 def fix_database():
-    
+    activities = Activity.objects.all()
+
+    for activity in activities:
+        if (v_index := activity.activity_title.find('visit')) != -1:
+            v_index = activity.activity_title.find('visit')
+            activity.activity_title = activity.activity_title[:v_index - 1]
+            if (v_index := activity.activity_image.find('visit')) != -1:
+                activity.activity_image = activity.activity_image[:v_index]
+        
+        if activity.activity_image == '':
+            activity.activity_image = activity.activity_title.replace(" ", "").lower()
+
+        if (space_index := activity.activity_accessibility.find(' ')) != -1:
+            activity.activity_accessibility[:space_index]
+
+        if (space_index := activity.activity_type.find(' ')) != -1:
+            activity.activity_type[:space_index]
+        if (comma_index := activity.activity_type.find(',')) != -1:
+            activity.activity_type = activity.activity_type[:comma_index]
+
+        if (pound_index := activity.activity_price.find('£')) != -1:
+            try:
+                activity.activity_price = activity.activity_price[pound_index-1:].rstrip()
+            except:
+                pass
+        if (space_index := activity.activity_price.find(' ')) != -1:
+            activity.activity_price = activity.activity_price[:space_index]
+        if (to_index := activity.activity_price.find('-')) != -1:
+            activity.activity_price = activity.activity_price[:to_index]
+        if (free_index := activity.activity_price.lower().find('free')) != -1:
+            activity.activity_price = activity.activity_price[:free_index] + '0'
+
+        if (more_index := activity.activity_duration.find(' or more')) != -1:
+            activity.activity_duration = activity.activity_duration[:more_index] + '+'
+
+    activity.save()
