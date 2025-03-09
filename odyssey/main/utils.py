@@ -81,19 +81,19 @@ def fix_database():
 
     for activity in activities:
         if (v_index := activity.activity_title.find('visit')) != -1:
-            v_index = activity.activity_title.find('visit')
             activity.activity_title = activity.activity_title[:v_index - 1]
-            if (v_index := activity.activity_image.find('visit')) != -1:
-                activity.activity_image = activity.activity_image[:v_index]
+
+        if (v_index := activity.activity_image.find('visit')) != -1:
+            activity.activity_image = activity.activity_image[:v_index]
         
-        if activity.activity_image == '':
+        if not activity.activity_image:
             activity.activity_image = activity.activity_title.replace(" ", "").lower()
 
         if (space_index := activity.activity_accessibility.find(' ')) != -1:
-            activity.activity_accessibility[:space_index]
+            activity.activity_accessibility = activity.activity_accessibility[:space_index]
 
         if (space_index := activity.activity_type.find(' ')) != -1:
-            activity.activity_type[:space_index]
+            activity.activity_type = activity.activity_type[:space_index]
         if (comma_index := activity.activity_type.find(',')) != -1:
             activity.activity_type = activity.activity_type[:comma_index]
 
@@ -112,4 +112,4 @@ def fix_database():
         if (more_index := activity.activity_duration.find(' or more')) != -1:
             activity.activity_duration = activity.activity_duration[:more_index] + '+'
 
-    activity.save()
+        activity.save()
