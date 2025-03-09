@@ -75,3 +75,6 @@ def get_activities():
                     print('success')
                 except:
                     print('fail')
+
+def fix_database():
+    
