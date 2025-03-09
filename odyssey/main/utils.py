@@ -98,10 +98,9 @@ def fix_database():
             activity.activity_type = activity.activity_type[:comma_index]
 
         if (pound_index := activity.activity_price.find('£')) != -1:
-            try:
-                activity.activity_price = activity.activity_price[pound_index-1:].rstrip()
-            except:
-                pass
+            if pound_index > 0:
+                pound_index -= 1
+                activity.activity_price = activity.activity_price[pound_index:].rstrip()
         if (space_index := activity.activity_price.find(' ')) != -1:
             activity.activity_price = activity.activity_price[:space_index]
         if (to_index := activity.activity_price.find('-')) != -1:
