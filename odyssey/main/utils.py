@@ -6,40 +6,14 @@ def get_activities():
 
     model = "mistral"
 
-    # cities = [
-    #     'Bangkok', 'Paris', 'London', 'Dubai', 'Singapore', 'New York', 'Kuala Lumpur', 
-    #     'Istanbul', 'Tokyo', 'Antalya', 'Seoul', 'Osaka', 'Makkah', 'Hong Kong', 
-    #     'Milan', 'Barcelona', 'Pattaya', 'Bali', 'Shanghai', 'Las Vegas', 'Amsterdam', 
-    #     'Los Angeles', 'Miami', 'Vienna', 'Prague', 'Rome', 'Taipei', 'Guangzhou', 
-    #     'Delhi', 'Cairo', 'Berlin', 'Moscow', 'Madrid', 'Beijing', 'Ho Chi Minh City', 
-    #     'Munich', 'Dublin', 'Toronto', 'Jakarta', 'Lisbon', 'Sydney', 'Budapest', 
-    #     'Mexico City', 'Doha', 'Rio de Janeiro', 'Buenos Aires', 'Athens', 'Stockholm', 
-    #     'Warsaw', 'Edinburgh', 'Brussels', 'San Francisco', 'Florence', 'Chengdu', 
-    #     'Marrakech', 'Hanoi', 'Manila', 'Zurich', 'Geneva', 'Venice', 'Riyadh', 
-    #     'Johannesburg', 'Shenzhen', 'Boston', 'Copenhagen', 'Vancouver', 'Melbourne', 
-    #     'Abu Dhabi', 'Phuket', 'Nice', 'Krakow', 'Chennai', 'Cape Town', 'Brisbane', 
-    #     'Lyon', 'Lima', 'Bogotá', 'Montreal', 'Kolkata', 'Birmingham', 'Saint Petersburg', 
-    #     'Seattle', 'Nagoya', 'Kyoto', 'Macau', 'Hamburg', 'Frankfurt', 'Tel Aviv', 
-    #     'Munich', 'Marseille', 'Sao Paulo', 'Auckland', 'Porto', 'Valencia', 'Oslo', 
-    #     'Gothenburg', 'Bucharest', 'Belfast', 'Helsinki', 'Perth', 'Santiago', 'Taiyuan', 
-    #     'Nagoya', 'Athens', 'Christchurch', 'Colombo'
-    # ]
-
     cities = [
-        'Milan', 'Barcelona', 'Pattaya', 'Bali', 'Shanghai', 'Las Vegas', 'Amsterdam', 
-        'Los Angeles', 'Miami', 'Vienna', 'Prague', 'Rome', 'Taipei', 'Guangzhou', 
-        'Delhi', 'Cairo', 'Berlin', 'Moscow', 'Madrid', 'Beijing', 'Ho Chi Minh City', 
-        'Munich', 'Dublin', 'Toronto', 'Jakarta', 'Lisbon', 'Sydney', 'Budapest', 
-        'Mexico City', 'Doha', 'Rio de Janeiro', 'Buenos Aires', 'Athens', 'Stockholm', 
-        'Warsaw', 'Edinburgh', 'Brussels', 'San Francisco', 'Florence', 'Chengdu', 
-        'Marrakech', 'Hanoi', 'Manila', 'Zurich', 'Geneva', 'Venice', 'Riyadh', 
-        'Johannesburg', 'Shenzhen', 'Boston', 'Copenhagen', 'Vancouver', 'Melbourne', 
-        'Abu Dhabi', 'Phuket', 'Nice', 'Krakow', 'Chennai', 'Cape Town', 'Brisbane', 
-        'Lyon', 'Lima', 'Bogotá', 'Montreal', 'Kolkata', 'Birmingham', 'Saint Petersburg', 
-        'Seattle', 'Nagoya', 'Kyoto', 'Macau', 'Hamburg', 'Frankfurt', 'Tel Aviv', 
-        'Munich', 'Marseille', 'Sao Paulo', 'Auckland', 'Porto', 'Valencia', 'Oslo', 
-        'Gothenburg', 'Bucharest', 'Belfast', 'Helsinki', 'Perth', 'Santiago', 'Taiyuan', 
-        'Nagoya', 'Athens', 'Christchurch', 'Colombo', 'Hong Kong'
+        'Bangkok', 'Paris', 'London', 'Singapore', 'New York', 
+        'Istanbul', 'Tokyo', 'Seoul', 'Milan', 'Barcelona', 
+        'Shanghai', 'Amsterdam', 'Los Angeles', 'Cairo', 
+        'Berlin', 'Moscow', 'Madrid', 'Beijing','Sydney', 
+        'Budapest', 'Rio de Janeiro', 'Venice','Copenhagen',
+        'Abu Dhabi', 'Cape Town', 'Montreal', 'Saint Petersburg', 
+        'Munich',
     ]
 
     for i in cities:
@@ -93,7 +67,7 @@ def get_activities():
 
                 print(item[activity])
                 try:
-                    new_activity = Activity(activity_city = key, activity_title = item[activity][0], activity_price = item[activity][1], 
+                    new_activity = Activity(activity_city = key, activity_title = item[activity][0], activity_image = item[activity][0].replace(" ", "").lower(), activity_price = item[activity][1], 
                                         activity_desc = item[activity][2], activity_short_desc = item[activity][3], activity_type = item[activity][4], 
                                         activity_group_size = item[activity][5], activity_age = item[activity][6], activity_duration = item[activity][7], 
                                         activity_popularity = item[activity][8], activity_accessibility = item[activity][9])
