@@ -119,15 +119,6 @@ def fix_database():
         popularity = int(activity.popularity[0])
         activity.popularity = '⭐' * popularity + '☆' * (5-popularity)
 
-        activity.save()
-
-def fix_database2():
-    activities = Activity.objects.all()
-
-    for activity in activities:
-        initial = activity.image
         activity.image = re.sub(r'[^a-zA-Z0-9 ]', '', activity.image)
-        new = activity.image
-        if new != initial:
-            print(activity)
+
         activity.save()
