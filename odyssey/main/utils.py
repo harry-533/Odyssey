@@ -1,12 +1,7 @@
-import ollama
+# import ollama
 from .models import Activity
 
-def get_activities():
-    client = ollama.Client()
-
-    model = "mistral"
-
-    cities = [
+cities = [
         'Bangkok', 'Paris', 'London', 'Singapore', 'New York', 
         'Istanbul', 'Tokyo', 'Seoul', 'Milan', 'Barcelona', 
         'Shanghai', 'Amsterdam', 'Los Angeles', 'Cairo', 
@@ -14,6 +9,11 @@ def get_activities():
         'Rio de Janeiro', 'Venice','Copenhagen',
         'Abu Dhabi', 'Cape Town'
     ]
+
+def get_activities():
+    client = ollama.Client()
+
+    model = "mistral"
 
     for i in cities:
         print(i)
@@ -110,16 +110,10 @@ def fix_database():
         if (more_index := activity.activity_duration.find(' or more')) != -1:
             activity.activity_duration = activity.activity_duration[:more_index] + '+'
 
-        activity.save()
-
-def fix_database2():
-    activities = Activity.objects.all()
-
-    for activity in activities:
         if activity.activity_accessibility == "Limited":
-            activity.activity_accessibility + ' accessibility'
+            activity.activity_accessibility += ' accessibility'
         else:
-            activity.activity_accessibility + ' accessible'
+            activity.activity_accessibility += ' accessible'
 
         popularity = int(activity.activity_popularity[0])
         activity.activity_popularity = '⭐' * popularity + '☆' * (5-popularity)
