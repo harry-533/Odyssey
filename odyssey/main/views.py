@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JourneyInformationForm
 from .models import JourneyInformation
-# from .utils import cities
+from .utils import cities
 
 
 def home(request):
