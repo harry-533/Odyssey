@@ -111,3 +111,17 @@ def fix_database():
             activity.activity_duration = activity.activity_duration[:more_index] + '+'
 
         activity.save()
+
+def fix_database2():
+    activities = Activity.objects.all()
+
+    for activity in activities:
+        if activity.activity_accessibility == "Limited":
+            activity.activity_accessibility + ' accessibility'
+        else:
+            activity.activity_accessibility + ' accessible'
+
+        popularity = int(activity.activity_popularity[0])
+        activity.activity_popularity = '⭐' * popularity + '☆' * (5-popularity)
+
+        activity.save()

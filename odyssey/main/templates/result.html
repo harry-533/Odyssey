@@ -1,4 +1,6 @@
-<!-- {% load static %} -->
+{% load static %}
+{% load custom_tags %}
+{% get_activties as activites %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +72,7 @@
                 </div>
             </div> 
             <div class="center-section">
-                <form>
+                <form id="sort-form">
                     <select id="sort-by" onchange='sortSubmit(this.value);'>
                         <option value="0" disabled selected>Sort by</option>
                         <option value="low-high">Price: Low to high</option>
@@ -79,6 +81,34 @@
                     </select>
                 </form>
                 <div class="activities">
+                    {% for activity in activities %}
+                        {% if activity.activity_city == city %}
+                        <div class="activity {{ activity.activity_image }}">
+                            <div class="activity-img">
+                                <img class="img1" id="activity-img" src="{% static 'images/result/activityimg/' %}{{ activity.activity_city|lower|cut:' ' }}/{{ activity.activity_image }}">
+                            </div>
+                            <div class="activity-info">
+                                <div class="activity-header">
+                                    <h1 class="title1" id="activity-title">{{ activity.activity_city }} - {{ activity.activity_price }}</h1>
+                                    <h1 class="btn-1" id="add-btn">+</h1>
+                                </div>
+                                <p class="desc1">{{ activity.activity_desc }}</p>
+                                <div class="activity-list">
+                                    <ul>
+                                        <li class="type1">Activity type: {{ activity.activity_type }}</li>
+                                        <li>Group size: {{ activity.activity_group_size }}</li>
+                                        <li class="age1">Recommended Age: {{ activity.activity_age }}</li>
+                                    </ul>
+                                    <ul>
+                                        <li>Duration: {{ activity.activity_duration }}</li>
+                                        <li class="popular1" id="popularity">Popularity:  {{ activity.activity_popularity }}</li>
+                                        <li class="access1">Accessibility: {{ activity.activity_accessibility }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                     <div class="activity sld1">
                         <div class="activity-img">
                             <img class="img1" id="activity-img" src="{% static 'images/result/sagrada.png' %}">
