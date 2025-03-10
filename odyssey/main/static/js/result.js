@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
             let title = document.querySelector(`.title${num}`).textContent;
             const type = document.querySelector(`.type${num}`).textContent;
             const age = document.querySelector(`.age${num}`).textContent;
-            const detail = title.slice(title.indexOf('£')) + ", " + type.slice(type.indexOf(':') + 2) + ", " + age.slice(age.indexOf(':') + 2);
+            const price = title.slice(title.indexOf('£'))
+            const detail = price + ", " + type.slice(type.indexOf(':') + 2) + ", " + age.slice(age.indexOf(':') + 2);
             title = document.querySelector(`.title${num}`).textContent.slice(0, -6);
             const desc = document.querySelector(`.desc${num}`).textContent;
      
@@ -27,15 +28,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p id="chosen-desc">${desc}</p>
                 </div>
             </div>`;
+
+            let currentBudget = document.getElementById('current-budget').textContent;
+            currentBudget = Number(currentBudget.slice(10))
+            const newBudget = currentBudget - Number(price.slice(1))
+            document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`
         }
 
         if (event.target.id.startsWith("right-btn")) {
             const num = event.target.id[event.target.id.length - 1];
-            var clickedSlide = document.querySelector(`.right-sld${num}`)
+            var clickedSlide = document.querySelector(`.right-sld${num}`);
+            price = clickedSlide.querySelector('#chosen-detail').textContent;
+            endIndex = price.indexOf(',');
+            price = price.slice(1, endIndex);
+
             clickedSlide.remove();
 
             leftSlide = document.querySelector(`.sld${num}`);
             leftSlide.style.display = 'flex';
+
+            let currentBudget = document.getElementById('current-budget').textContent;
+            currentBudget = Number(currentBudget.slice(10))
+            const newBudget = currentBudget + Number(price);
+            document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`;
         }
     });
 
