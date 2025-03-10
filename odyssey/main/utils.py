@@ -10,10 +10,9 @@ def get_activities():
         'Bangkok', 'Paris', 'London', 'Singapore', 'New York', 
         'Istanbul', 'Tokyo', 'Seoul', 'Milan', 'Barcelona', 
         'Shanghai', 'Amsterdam', 'Los Angeles', 'Cairo', 
-        'Berlin', 'Moscow', 'Madrid', 'Beijing','Sydney', 
-        'Budapest', 'Rio de Janeiro', 'Venice','Copenhagen',
-        'Abu Dhabi', 'Cape Town', 'Montreal', 'Saint Petersburg', 
-        'Munich',
+        'Berlin', 'Moscow', 'Madrid', 'Beijing', 
+        'Rio de Janeiro', 'Venice','Copenhagen',
+        'Abu Dhabi', 'Cape Town'
     ]
 
     for i in cities:
