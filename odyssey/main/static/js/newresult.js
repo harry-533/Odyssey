@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener("click", function(event) {
-        if (event.target.dispatchEvent.startsWith("add-btn")) {
+        if (event.target.id.startsWith("add-btn")) {
             const activity = event.target.className.substring(4);
             var clickedSlide = document.querySelector(`.sld${activity}`);
             clickedSlide.computedStyleMap.display = 'none'
@@ -32,20 +32,19 @@ document.addEventListener('DOMContentLoaded', function() {
             let currentBudget = document.getElementById('current-budget').textContent;
             currentBudget = Number(currentBudget.slice(10))
             const newBudget = currentBudget - Number(price.slice(1))
-            // figure out how to edit the budget variable
             document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`       
         }
 
         if (event.target.id.startsWith("right-btn")) {
-            const num = event.target.id[event.target.id.length - 1];
-            var clickedSlide = document.querySelector(`.right-sld${num}`);
+            const activity = event.target.className.substring(4);
+            var clickedSlide = document.querySelector(`.right-sld${activity}`);
             price = clickedSlide.querySelector('#chosen-detail').textContent;
             endIndex = price.indexOf(',');
             price = price.slice(1, endIndex);
 
             clickedSlide.remove();
 
-            leftSlide = document.querySelector(`.sld${num}`);
+            leftSlide = document.querySelector(`.sld${activity}`);
             leftSlide.style.display = 'flex';
 
             let currentBudget = document.getElementById('current-budget').textContent;
@@ -54,4 +53,90 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`;
         }
     })
-})
+
+    const fitlerForm = document.getElementById('filter-form');
+
+    fitlerForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const minPrice = Number(document.querySelector('#price-dropdown-left').value);
+        const maxPrice = Number(document.querySelector('#price-dropdown-right').value);
+        const activityType = document.querySelector('#dropdown:nth-of-type(1)').value;
+        const minAccessibility = Number(document.querySelector('#dropdown:nth-of-type(2)').value);
+        const minPopularity = Number(document.querySelector('#dropdown:nth-of-type(3)').value);
+        document.getElementById("filter-form").reset();
+
+        document.querySelectorAll('.activity').forEach((activity) => {
+            const current_activity = activity.classList[1]
+            if (!document.querySelector(`.right-sld${current_activity}`)) {
+                activity.style.display = 'flex'
+            }
+
+            let title = activity.querySelector(`.title${current_activity}`).textContent;
+            let price = Number(title.slice(title.indexOf('£') + 1));
+            let type = activity.querySelector(`.type${current_activity}`).textContent;
+            type = type.slice(type.indexOf(':') + 2)
+            let accessibility = activity.querySelector(`.access${current_activity}`).textContent;
+            accessibility = accessibility.split(' ')[0]
+            let accessList = ['Limited', 'Partially', 'Fully']
+            accessibility = accessList.indexOf(accessibility) 
+            let popularity = activity.querySelector(`.popular${current_activity}`).textContent;
+            popularity = popularity.split('⭐').length - 1
+
+            if (price < minPrice || price > maxPrice || popularity < minPopularity || (type != activityType && activityType != 'None') || accessibility < minAccessibility) {
+                activity.style.display = 'none'
+            }
+        })
+    })
+
+    document.addEventListener('keydown', (event) => {
+        const keyPressed = event.key;
+        if (keyPressed == 'Enter') {
+            const searchInput = document.getElementById('search-bar').value;
+            document.getElementById('search-bar').value = "";
+
+            document.querySelectorAll('.activity').forEach((activity) => {
+                const currentActivity = activity.classList[1]
+                if (!document.querySelector(`.right-sld${currentActivity}`)) {
+                    activity.style.display = 'flex'
+                }
+
+                let title = activity.querySelector(`.title${currentActivity}`).textContent.toLowerCase();
+                if (!title.includes(searchInput.toLowerCase())) {
+                    activity.style.display = 'none';
+                }
+            })
+        }
+    })
+});
+
+function sortSubmit(sel) {
+    const activitiesContainer = document.querySelector('.activities');
+    const activities = Array.from(document.querySelectorAll('.activity'));
+    const sortBy = sel;
+
+    activities.sort((a, b) => {
+        if (sortBy == 'low-high') {
+            const titleA = a.querySelector('#activity-title').textContent;
+            const priceA = Number(titleA.slice(titleA.indexOf('£') + 1));
+            const titleB = b.querySelector('#activity-title').textContent;
+            const priceB = Number(titleB.slice(titleB.indexOf('£') + 1));
+            return priceA - priceB;
+        } else if (sortBy == 'high-low') {
+            const titleA = a.querySelector('#activity-title').textContent;
+            const priceA = Number(titleA.slice(titleA.indexOf('£') + 1));
+            const titleB = b.querySelector('#activity-title').textContent;
+            const priceB = Number(titleB.slice(titleB.indexOf('£') + 1));
+            return priceB - priceA;
+        } else {
+            let popularityA = a.querySelector('#popularity').textContent;
+            popularityA = popularityA.split('⭐').length - 1;
+            let popularityB = b.querySelector('#popularity').textContent;
+            popularityB = popularityB.split('⭐').length - 1;
+            return popularityB - popularityA
+        }
+    });
+
+    activitiesContainer.innerHTML = '';
+    activities.forEach(activity => activitiesContainer.appendChild(activity));
+}

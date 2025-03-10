@@ -24,7 +24,7 @@ class Activity(models.Model):
     activity_age = models.CharField(max_length=16)
     activity_duration = models.CharField(max_length=16)
     activity_popularity = models.CharField(max_length=16)
-    activity_accessibility = models.CharField(max_length=16)
+    activity_accessibility = models.CharField(max_length=32)
 
     def __str__(self):
         return f"{self.activity_city} - {self.activity_title}"
