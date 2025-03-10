@@ -82,28 +82,28 @@
                 </form>
                 <div class="activities">
                     {% for activity in activities %}
-                        {% if activity.activity_city|lower|cut:' ' == city %}
-                        <div class="activity {{ activity.activity_image }}">
+                        {% if activity.city|lower|cut:' ' == city %}
+                        <div class="activity {{ activity.image }}">
                             <div class="activity-img">
-                                <img class="img{{ activity.activity_image }}" id="activity-img" src="{% static 'images/result/activityimg/' %}{{ activity.activity_city|lower|cut:' ' }}/{{ activity.activity_image }}.png">
+                                <img class="img{{ activity.image }}" id="activity-img" src="{% static 'images/result/activityimg/' %}{{ activity.city|lower|cut:' ' }}/{{ activity.image }}.png">
                             </div>
                             <div class="activity-info">
                                 <div class="activity-header">
-                                    <h1 class="title{{ activity.activity_image }}" id="activity-title">{{ activity.activity_title }} - {{ activity.activity_price }}</h1>
-                                    <h1 class="btn-{{ activity.activity_image }}" id="add-btn">+</h1>
+                                    <h1 class="title{{ activity.image }}" id="activity-title">{{ activity.title }} - {{ activity.price }}</h1>
+                                    <h1 class="btn-{{ activity.image }}" id="add-btn">+</h1>
                                 </div>
-                                <p class="desc{{ activity.activity_image }}">{{ activity.activity_desc }}</p>
-                                <p class="short-desc{{ activity.activity_image }} " id="short-desc">{{ activity.activity_short_desc }}</p>
+                                <p class="desc{{ activity.image }}">{{ activity.desc }}</p>
+                                <p class="short-desc{{ activity.image }} " id="short-desc">{{ activity.short_desc }}</p>
                                 <div class="activity-list">
                                     <ul>
-                                        <li class="type{{ activity.activity_image }}">Activity type: {{ activity.activity_type }}</li>
-                                        <li>Group size: {{ activity.activity_group_size }}</li>
-                                        <li class="age{{ activity.activity_image }}">Recommended Age: {{ activity.activity_age }}</li>
+                                        <li class="type{{ activity.image }}">Activity type: {{ activity.category }}</li>
+                                        <li>Group size: {{ activity.group_size }}</li>
+                                        <li class="age{{ activity.image }}">Recommended Age: {{ activity.age }}</li>
                                     </ul>
                                     <ul>
-                                        <li>Duration: {{ activity.activity_duration }}</li>
-                                        <li class="popular{{ activity.activity_image }}" id="popularity">Popularity:  {{ activity.activity_popularity }}</li>
-                                        <li class="access{{ activity.activity_image }}">Accessibility: {{ activity.activity_accessibility }}</li>
+                                        <li>Duration: {{ activity.duration }}</li>
+                                        <li class="popular{{ activity.image }}" id="popularity">Popularity:  {{ activity.popularity }}</li>
+                                        <li class="access{{ activity.image }}">Accessibility: {{ activity.accessibility }}</li>
                                     </ul>
                                 </div>
                             </div>

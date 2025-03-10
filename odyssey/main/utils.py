@@ -1,5 +1,6 @@
 # import ollama
 from .models import Activity
+import re
 
 cities = [
         'Bangkok', 'Paris', 'London', 'Singapore', 'New York', 
@@ -66,10 +67,10 @@ def get_activities():
 
                 print(item[activity])
                 try:
-                    new_activity = Activity(activity_city = key, activity_title = item[activity][0], activity_image = item[activity][0].replace(" ", "").lower(), activity_price = item[activity][1], 
-                                        activity_desc = item[activity][2], activity_short_desc = item[activity][3], activity_type = item[activity][4], 
-                                        activity_group_size = item[activity][5], activity_age = item[activity][6], activity_duration = item[activity][7], 
-                                        activity_popularity = item[activity][8], activity_accessibility = item[activity][9])
+                    new_activity = Activity(city = key, title = item[activity][0], image = item[activity][0].replace(" ", "").lower(), price = item[activity][1], 
+                                        desc = item[activity][2], short_desc = item[activity][3], category = item[activity][4], 
+                                        group_size = item[activity][5], age = item[activity][6], duration = item[activity][7], 
+                                        popularity = item[activity][8], accessibility = item[activity][9])
                     new_activity.save()
                     print('success')
                 except:
@@ -79,43 +80,54 @@ def fix_database():
     activities = Activity.objects.all()
 
     for activity in activities:
-        if (v_index := activity.activity_title.find('visit')) != -1:
-            activity.activity_title = activity.activity_title[:v_index - 1]
+        if (v_index := activity.title.find('visit')) != -1:
+            activity.title = activity.title[:v_index - 1]
 
-        if (v_index := activity.activity_image.find('visit')) != -1:
-            activity.activity_image = activity.activity_image[:v_index]
+        if (v_index := activity.image.find('visit')) != -1:
+            activity.image = activity.image[:v_index]
         
-        if not activity.activity_image:
-            activity.activity_image = activity.activity_title.replace(" ", "").lower()
+        if not activity.image:
+            activity.image = activity.title.replace(" ", "").lower()
 
-        if (space_index := activity.activity_accessibility.find(' ')) != -1:
-            activity.activity_accessibility = activity.activity_accessibility[:space_index]
+        if (space_index := activity.accessibility.find(' ')) != -1:
+            activity.accessibility = activity.accessibility[:space_index]
 
-        if (space_index := activity.activity_type.find(' ')) != -1:
-            activity.activity_type = activity.activity_type[:space_index]
-        if (comma_index := activity.activity_type.find(',')) != -1:
-            activity.activity_type = activity.activity_type[:comma_index]
+        if (space_index := activity.category.find(' ')) != -1:
+            activity.category = activity.category[:space_index]
+        if (comma_index := activity.category.find(',')) != -1:
+            activity.category = activity.category[:comma_index]
 
-        if (pound_index := activity.activity_price.find('£')) != -1:
+        if (pound_index := activity.price.find('£')) != -1:
             if pound_index > 0:
                 pound_index -= 1
-                activity.activity_price = activity.activity_price[pound_index:].rstrip()
-        if (space_index := activity.activity_price.find(' ')) != -1:
-            activity.activity_price = activity.activity_price[:space_index]
-        if (to_index := activity.activity_price.find('-')) != -1:
-            activity.activity_price = activity.activity_price[:to_index]
-        if (free_index := activity.activity_price.lower().find('free')) != -1:
-            activity.activity_price = activity.activity_price[:free_index] + '0'
+                activity.price = activity.price[pound_index:].rstrip()
+        if (space_index := activity.price.find(' ')) != -1:
+            activity.price = activity.price[:space_index]
+        if (to_index := activity.price.find('-')) != -1:
+            activity.price = activity.price[:to_index]
+        if (free_index := activity.price.lower().find('free')) != -1:
+            activity.price = activity.price[:free_index] + '0'
 
-        if (more_index := activity.activity_duration.find(' or more')) != -1:
-            activity.activity_duration = activity.activity_duration[:more_index] + '+'
+        if (more_index := activity.duration.find(' or more')) != -1:
+            activity.duration = activity.duration[:more_index] + '+'
 
-        if activity.activity_accessibility == "Limited":
-            activity.activity_accessibility += ' accessibility'
+        if activity.accessibility == "Limited":
+            activity.accessibility += ' accessibility'
         else:
-            activity.activity_accessibility += ' accessible'
+            activity.accessibility += ' accessible'
 
-        popularity = int(activity.activity_popularity[0])
-        activity.activity_popularity = '⭐' * popularity + '☆' * (5-popularity)
+        popularity = int(activity.popularity[0])
+        activity.popularity = '⭐' * popularity + '☆' * (5-popularity)
 
+        activity.save()
+
+def fix_database2():
+    activities = Activity.objects.all()
+
+    for activity in activities:
+        initial = activity.image
+        activity.image = re.sub(r'[^a-zA-Z0-9 ]', '', activity.image)
+        new = activity.image
+        if new != initial:
+            print(activity)
         activity.save()
