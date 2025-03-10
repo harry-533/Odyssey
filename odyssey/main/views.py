@@ -18,8 +18,8 @@ def home(request):
     
     return render(request, "home.html", {'form': form})
 
-def result(request):
-    return render(request, "result.html")
+def result(request, city, budget):
+    return render(request, "result.html", {'city': city, 'budget': budget})
 
 def autocomplete_cities(request):
     query = request.GET.get('term', '').lower()

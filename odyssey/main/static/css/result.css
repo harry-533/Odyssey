@@ -226,6 +226,10 @@ body {
     margin: 25px 0px 0px 5px;
 }
 
+#short-desc {
+    display: none;
+}
+
 #add-btn {
     font-size: 50px;
     padding: 0px;
