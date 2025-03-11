@@ -39,9 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('current-budget').style.color = 'red';
             }
             document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`       
-        }
-
-        if (event.target.id.startsWith("right-btn")) {
+        } else if (event.target.id.startsWith("right-btn")) {
             const activity = event.target.id.substring(9);
             var clickedSlide = document.querySelector(`.right-sld${activity}`);
             price = clickedSlide.querySelector('#chosen-detail').textContent;
@@ -60,6 +58,50 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('current-budget').style.color = 'black';
             }
             document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`;
+        } else if (event.target.id.startsWith("btn-save")) {
+            const userId = document.body.dataset.userId;
+            if (!userId) {
+                pass
+            } else {
+                const city = document.body.dataset.city;
+                const currentBudget = document.getElementById('current-budget').textContent;
+                const originalBudget = document.body.dataset.budget;
+                const cost = originalBudget - currentBudget;
+                const depature = 'get from home'
+                const arrival = 'get from home'
+                const name = "user input"
+                let activities = [];
+                document.querySelectorAll('.chosen-activities').forEach((activity) => {
+                    const current_activity = activity.querySelector('.chosen').classList[1].substring(9)
+                    activities.push(current_activity)
+                })
+
+                const data = {
+                    user_id: userId,
+                    name: name,
+                    activity_ids: activities,
+                    city: city,
+                    cost: cost,
+                    depature: depature,
+                    arrival: arrival
+                };
+
+                fetch("/add-row/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Success:", data);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                })
+            }
+            
         }
     })
 

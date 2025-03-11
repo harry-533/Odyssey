@@ -1,12 +1,13 @@
-from django.template import loader
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JourneyInformationForm
-from .models import JourneyInformation
+from .models import JourneyInformation, Itinerary
 from .utils import cities
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 def home(request):
@@ -40,6 +41,26 @@ def autocomplete_cities(request):
     query = request.GET.get('term', '').lower()
     results = [city for city in cities if query in city.lower()][:5]
     return JsonResponse(results, safe=False)
+
+@csrf_exempt
+def add_itinerary(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            new_itinerary = Itinerary.objects.create(
+                user_id=data["user_id"],
+                activity_ids=data["activity_ids"],
+                city=data["city"],
+                cost=data["cost"],
+                departure=data["departure"],
+                arrival=data["arrival"]
+            )
+
+            return JsonResponse({"message": "Row added successfully!", "id": new_itinerary.id}, status=201)
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
 
 def custom_login(request):
     if request.method == "POST":

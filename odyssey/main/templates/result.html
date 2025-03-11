@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Odyssey</title>
     </head>
-    <body>
+    <body data-user-id="{{ user.id }}" data-city="{{ city }}" data-budet="{{ budget }}">
         <div class="navbar">
             <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
             <a id="nav-profile" href="{% url 'login' %}">Profile</a>
@@ -27,7 +27,6 @@
                 <a href="{% url 'register' %}" id="nav-register">Register</a>
                 <a href="{% url 'login' %}" id="nav-login">Login</a>
             {% endif %}
-            <
         </div>
         <div class="main-section">
             <div class="left-section">
@@ -218,7 +217,5 @@
                 </div>
             </div>
         </div>
-        <!-- ignore -->
-        <div id="image-container" data-img-url="{% static 'images/result/' %}"></div>
     </body>
 </html>
