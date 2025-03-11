@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener("click", function(event) {
         if (event.target.id.startsWith("add-btn")) {
             const activity = event.target.className.substring(4);
-            var clickedSlide = document.querySelector(`.sld${activity}`);
-            clickedSlide.computedStyleMap.display = 'none'
+            var clickedSlide = document.querySelector(`.${activity}`);
+            clickedSlide.style.display = 'none'
 
             const imagePath = document.querySelector(`.img${activity}`).getAttribute('src');
             let title = document.querySelector(`.title${activity}`).textContent;
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (event.target.id.startsWith("right-btn")) {
-            const activity = event.target.className.substring(4);
+            const activity = event.target.id.substring(9);
             var clickedSlide = document.querySelector(`.right-sld${activity}`);
             price = clickedSlide.querySelector('#chosen-detail').textContent;
             endIndex = price.indexOf(',');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             clickedSlide.remove();
 
-            leftSlide = document.querySelector(`.sld${activity}`);
+            leftSlide = document.querySelector(`.${activity}`);
             leftSlide.style.display = 'flex';
 
             let currentBudget = document.getElementById('current-budget').textContent;
@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
             let title = activity.querySelector(`.title${current_activity}`).textContent;
             let price = Number(title.slice(title.indexOf('£') + 1));
             let type = activity.querySelector(`.type${current_activity}`).textContent;
-            type = type.slice(type.indexOf(':') + 2)
+            type = type.slice(type.indexOf(':') + 2);
             let accessibility = activity.querySelector(`.access${current_activity}`).textContent;
-            accessibility = accessibility.split(' ')[0]
-            let accessList = ['Limited', 'Partially', 'Fully']
-            accessibility = accessList.indexOf(accessibility) 
+            accessibility = accessibility.split(' ')[1].replace(/[\r\n]+/gm, "");
+            let accessList = ['Limited', 'Partially', 'Fully'];
+            accessibility = accessList.indexOf(accessibility);
             let popularity = activity.querySelector(`.popular${current_activity}`).textContent;
             popularity = popularity.split('⭐').length - 1
 
@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('search-bar').value = "";
 
             document.querySelectorAll('.activity').forEach((activity) => {
-                const currentActivity = activity.classList[1]
-                if (!document.querySelector(`.right-sld${currentActivity}`)) {
-                    activity.style.display = 'flex'
+                const currentActivity = activity.classList[1];
+                if (document.querySelector(`.${currentActivity}`).style.display === "none") {
+                    activity.style.display = 'flex';
                 }
 
                 let title = activity.querySelector(`.title${currentActivity}`).textContent.toLowerCase();
