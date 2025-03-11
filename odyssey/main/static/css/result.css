@@ -143,7 +143,7 @@ body {
 }
 
 .weather {
-    display: flex;
+    display: none;
     background-color: #eefbfe;
     border-radius: 10px;
     gap: 20px;
