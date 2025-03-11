@@ -1,0 +1,73 @@
+body {
+    font-family: 'Funnel Display';
+    background-image: url("../images/result/bg.png");
+    background-size: cover;
+}
+
+.navbar {
+    display: flex;
+    gap: 50px;
+    width: 95%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nav-logo {
+    width: 10vw;
+    margin: 10px 120px 0px 120px;
+    filter: brightness(0%);
+}
+
+#nav-profile, #nav-calendar, #nav-register, #nav-login, #nav-logout, #welcome {
+    background-color: #def9ff;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 20px;
+    width: 200px;
+}
+
+#nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover, #nav-logout:hover {
+    background-color: #93ebff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile-img {
+    border-radius: 200px;
+}
+
+.user-itineraries {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.user-itineraries::-webkit-scrollbar {
+    background-color: #eefbfe;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.user-itineraries::-webkit-scrollbar-thumb {
+    background-color: #b1e6f1;
+    border-radius: 10px;
+    border: #eefbfe 3px solid;
+    width: 50%;
+}
+
+.itinerary {
+    display: flex;
+}
+
+.itinerary-topright {
+    display: flex;
+}

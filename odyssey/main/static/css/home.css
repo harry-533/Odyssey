@@ -20,7 +20,7 @@ body {
     margin: 10px 120px 0px 120px;
 }
 
-#nav-profile, #nav-calendar, #nav-register, #nav-login {
+#nav-profile, #nav-calendar, #nav-register, #nav-login, #nav-logout, #welcome {
     background-color: #def9ff;
     color: black;
     font-size: 20px;
@@ -31,7 +31,7 @@ body {
     width: 200px;
 }
 
-#nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover {
+#nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover, #nav-logout:hover {
     background-color: #93ebff;
 
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);

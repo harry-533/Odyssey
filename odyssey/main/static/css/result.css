@@ -19,7 +19,7 @@ body {
     width: 120px;
 }
 
-#nav-profile, #nav-calendar, #nav-register, #nav-login {
+#nav-profile, #nav-calendar, #nav-register, #nav-login, #nav-logout, #welcome {
     background-color: #def9ff;
     color: black;
     font-size: 20px;
@@ -31,7 +31,7 @@ body {
     box-shadow: 0 0 3px rgba(0,0,0,0.2);
 }
 
-#nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover {
+#nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover, #nav-logout:hover {
     background-color: #93ebff;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;

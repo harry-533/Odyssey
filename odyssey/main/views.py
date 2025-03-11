@@ -24,6 +24,18 @@ def home(request):
 def result(request, city, budget):
     return render(request, "result.html", {'city': city, 'budget': budget})
 
+def profile(request):
+    if  request.user.is_authenticated:
+        return render(request, "profile.html")
+    else:
+        return redirect('login')
+    
+def calendar(request):
+    if  request.user.is_authenticated:
+        return render(request, "calendar.html")
+    else:
+        return redirect('login')
+
 def autocomplete_cities(request):
     query = request.GET.get('term', '').lower()
     results = [city for city in cities if query in city.lower()][:5]

@@ -1,0 +1,51 @@
+{% load static %}
+{% load custom_tags %}
+{% get_itineraries as itineraries %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+        <!-- <script src="{% static 'js/result.js' %}"></script> -->
+        <link rel="icon" href="{% static 'images/result/Logo3.png' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <title>Odyssey</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <a id="nav-profile" href="{% url 'login' %}">Profile</a>
+            <a id="nav-calendar" href="{% url 'login' %}">Calendar</a>
+            <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/home/odyssey-title.png' %}"></a>
+            <h2 id="welcome">Welcome, {{ user.username }}</h2>
+            <a id="nav-logout" href="{% url 'logout' %}">Logout</a>
+        </div>
+        <div class="main-section">
+            <div class="user-profile">
+                <img id="profile-img" src="{% static 'images/result/activityimg/abudhabi/cornichebeach.png' %}">
+                <h2>{{ user.username }}</h2>
+            </div>
+            <div class="user-itineraries">
+                {% for itinerary in itineraries %}
+                    {% if itinerary.user_id == user.user_id %}
+                    <div class="itinerary">
+                        <div class="itinerary-title">
+                            <h3 id="itinerary-name">{{ itinerary.name }}</h3>
+                            <h4 id="itinerary-city">{{ itienrary.city }}</h4>
+                        </div>
+                        <div class="itinerary-details">
+                            <div class="itinerary-topright">
+                                <h4 id="itinerary-price">{{ itinerary.price }}</h4>
+                                <i class="fa fa-minus" id="right-btn${activity}"></i>
+                            </div>
+                            <h4 id="itinerary-dates">{{ itinerary.depature }} - {{itinerary.arrival }}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

@@ -6,3 +6,7 @@ register = template.Library()
 @register.simple_tag
 def get_activities():
     return Activity.objects.all()
+
+@register.simple_tag
+def get_itineraries():
+    return Itinerary.objects.all()

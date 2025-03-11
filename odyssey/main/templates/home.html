@@ -20,8 +20,13 @@
             <a id="nav-profile" href="{% url 'login' %}">Profile</a>
             <a id="nav-calendar" href="{% url 'login' %}">Calendar</a>
             <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/home/odyssey-title.png' %}"></a>
-            <a href="{% url 'register' %}" id="nav-register">Register</a>
-            <a href="{% url 'login' %}" id="nav-login">Login</a>
+            {% if user.is_authenticated %}
+                <h2 id="welcome">Welcome, {{ user.username }}</h2>
+                <a id="nav-logout" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'register' %}" id="nav-register">Register</a>
+                <a href="{% url 'login' %}" id="nav-login">Login</a>
+            {% endif %}
         </div>
         <div class="main-section">
             <div class="main-right">

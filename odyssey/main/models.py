@@ -27,3 +27,15 @@ class Activity(models.Model):
 
     def __str__(self):
         return f"{self.city} - {self.title}"
+    
+class Itinerary(models.Model):
+    user_id = models.IntegerField(default=0)
+    name = models.CharField(max_length=32)
+    activity_ids = models.JSONField(default=list)
+    city = models.CharField(max_length=32)
+    cost = models.CharField(max_length=16)
+    departure = models.CharField(max_length=16)
+    arrival = models.CharField(max_length=16)
+
+    def __str__(self):
+        return f"{self.name} - {self.city}"
