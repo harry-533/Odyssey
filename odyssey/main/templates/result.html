@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="{% static 'css/result.css' %}">
         <link rel="stylesheet" href="{% static 'css/global.css' %}">
         <script src="{% static 'js/result.js' %}"></script>
@@ -15,12 +16,12 @@
     </head>
     <body>
         <div class="navbar">
-            <a href="../home"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
-            <a id="nav-profile" href="index.html">Profile</a>
-            <a id="nav-calendar" href="index.html">Calendar</a>
+            <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
+            <a id="nav-profile" href="{% url 'login' %}">Profile</a>
+            <a id="nav-calendar" href="{% url 'login' %}">Calendar</a>
             <input type="text" id="search-bar" placeholder="search">
-            <span id="nav-register">Register</span>
-            <span id="nav-login">Login</span>
+            <a href="{% url 'register' %}" id="nav-register">Register</a>
+            <a href="{% url 'login' %}" id="nav-login">Login</a>
         </div>
         <div class="main-section">
             <div class="left-section">

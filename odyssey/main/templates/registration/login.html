@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="{% static 'css/registration/login.css' %}">
+    <link rel="icon" href="{% static 'images/result/Logo3.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="navbar">
+        <a id="nav-profile" href="{% url 'login' %}">Profile</a>
+        <a id="nav-calendar" href="{% url 'login' %}">Calendar</a>
+        <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/home/odyssey-title.png' %}"></a>
+        <span id="nav-register">Register</span>
+        <span id="nav-login">Login</span>
+    </div>
+    <div class="main-section">
+        <div class="main-left">
+            <img id="main-image" src="{% static 'images/home/leftimg.png' %}">
+        </div>
+        <div class="main-right">
+            <form id="main-form">
+                <img id="form-logo" src="{% static 'images/home/logo-clip.png' %}">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="error-message">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

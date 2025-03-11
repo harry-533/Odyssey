@@ -12,10 +12,12 @@ body {
     width: 95%;
     margin: auto;
     align-items: center;
+    justify-content: space-between;
 }
 
 #nav-logo {
-    width: 150px;
+    width: 10vw;
+    margin: 10px 120px 0px 120px;
 }
 
 #nav-profile, #nav-calendar, #nav-register, #nav-login {
@@ -116,14 +118,15 @@ body {
     height: 40px;
     border-radius: 10px;
     font-size: 25px;
-    background-color: #c1f4ff;
+    background-color: #8aeaff;
     margin-top: 20px;
     border: none;
     outline: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     font-family: 'Funnel Display';
 }
 
 #form-search:hover {
     cursor: pointer;
-    background-color: #8aeaff;
+    background-color: #6ce4ff;
 }

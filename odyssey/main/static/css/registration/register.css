@@ -1,0 +1,111 @@
+body {
+    font-family: 'Funnel Display';
+    background-image: url("../../images/result/bg.png");
+    background-size: cover;
+}
+
+/* Start of Navbar */
+
+.navbar {
+    display: flex;
+    gap: 50px;
+    width: 95%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nav-logo {
+    width: 10vw;
+    margin: 10px 150px 0px 150px;
+    filter: brightness(0%);
+}
+
+#nav-profile, #nav-calendar, #nav-register, #nav-login {
+    background-color: #def9ff;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 20px;
+    width: 200px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+#nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover {
+    background-color: #93ebff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* End of Navbar */
+
+#username, #password, #email {
+    width: 70%;
+    box-sizing: border-box; 
+    border-radius: 5px;
+    height: 35px;
+    font-size: 15px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #c1f4ff;
+    margin-bottom: 30px;
+    font-family: 'Funnel Display';
+}
+
+.register-btn {
+    width: 40%;
+    padding: 10px;
+    font-size: 25px;
+    background: #8aeaff;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Funnel Display';
+}
+
+.register-btn:hover {
+    background: #6ce4ff;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.main-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+#main-form {
+    display: flex;
+    width: 30vw;
+    height: 30vw;
+    flex-direction: column;
+    border-radius: 0px 20px 20px 0px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #def9ff;
+}
+
+#form-logo {
+    width: 45%;
+    margin-bottom: 10%;
+    filter: brightness(0%);
+}
+
+#main-image {
+    margin-top: 5px;
+    border-radius: 20px 0px 0px 20px;
+    height: 30vw;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
