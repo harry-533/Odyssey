@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JourneyInformationForm
-from .models import JourneyInformation, Itinerary
+from .models import JourneyInformation, Itinerary, Activity
 from .utils import cities
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -13,17 +13,35 @@ import json
 def home(request):
     if request.method == 'POST':
         form = JourneyInformationForm(request.POST)
-
+        
         if form.is_valid():
             instance = form.save()
             return redirect('result', pk=instance.pk)
+        else:
+            print(form.errors)
     else:
         form = JourneyInformationForm()  
-    
-    return render(request, "home.html", {'form': form})
 
-def result(request, city, budget):
-    return render(request, "result.html", {'city': city, 'budget': budget})
+
+    activities = Activity.objects.all()
+    unique_cities = set()
+    filtered_activities = []  
+
+    for activity in activities:
+        if activity.city not in unique_cities:
+            unique_cities.add(activity.city)
+            filtered_activities.append(activity)
+    
+    return render(request, "home.html", {'form': form, 'activities': filtered_activities})
+
+def result(request, pk):
+
+    journey = get_object_or_404(JourneyInformation, pk=pk)
+
+    return render(request, "result.html", {'journey': journey})
+
+# def result(request, city, budget):
+#     return render(request, "result.html", {'city': city, 'budget': budget})
 
 def profile(request):
     if  request.user.is_authenticated:
@@ -97,9 +115,3 @@ def custom_register(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
-
-# def result(request, pk):
-
-#     journey = get_object_or_404(JourneyInformation, pk=pk)
-
-#     return render(request, "result.html", {'journey': journey})

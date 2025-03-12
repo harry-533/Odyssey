@@ -10,5 +10,7 @@ class JourneyInformationForm(forms.ModelForm):
     def clean(self):
         cleaned_data = self.cleaned_data.copy()
         for field, value in self.cleaned_data.items(): 
-            cleaned_data['field'] = value.lower() 
+            # print(field)
+            # print(value)
+            cleaned_data[field] = value.lower() if isinstance(value, str) else value
         return cleaned_data

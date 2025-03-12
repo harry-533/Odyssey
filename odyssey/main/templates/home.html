@@ -1,4 +1,4 @@
-<!-- {% load static %} -->
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,46 +35,26 @@
                     {{form.non_field_errors}}
                     <img id="form-logo" src="{% static 'images/result/logo-lb.png' %}">
                     <!-- <div class="destination-container">
-                        <input type="text" id="dropdown-countries" name="destination" placeholder="Travelling to" autocomplete="on">
+                        <input type="text" id="dropdown-countries" name="destination" placeholder="Travelling to" autocomplete="on" required>
                         {{form.destination.errors}}
                     </div> -->
-                    <div class="destination-container">
-                        <select id="dropdown-countries" name="destination">
-                            <option value="-1" disabled selected>Travelling to</option>
-                            <option value="abudhabi">UAE - Abu Dhabi</option>
-                            <option value="capetown">South Africa - Cape Town</option>
-                            <option value="melbourne">Austrailia - Melbourne</option>
-                            <option value="venice">Italy - Venice</option>
-                            <option value="riodejaneiro">Brazil - Rio de Janeiro</option>
-                            <option value="beijing">China - Beijing</option>
-                            <option value="madrid">Spain - Madrid</option>
-                            <option value="moscow">Russia - Moscow</option>
-                            <option value="berlin">Germany - Berlin</option>
-                            <option value="cairo">Egypt - Cairo</option>
-                            <option value="losangeles">USA - Los Angeles</option>
-                            <option value="amsterdam">Netherlands - Amsterdam</option>
-                            <option value="shanghai">China - Shanghai</option>
-                            <option value="barcelona">Spain - Barcelona</option>
-                            <option value="milan">Italy - Milan</option>
-                            <option value="seoul">South Korea - Seoul</option>
-                            <option value="tokyo">Japan - Tokyo</option>
-                            <option value="istanbul">Turkey - Istanbul</option>
-                            <option value="newyork">USA - New York</option>
-                            <option value="singapore">Singapore - Singapore</option>
-                            <option value="london">UK - London</option>
-                            <option value="paris">France - Paris</option>
-                            <option value="bangkok">Thailand - Bangkok</option>
-                            {{form.destination.errors}}
-                        </select>
+                    <div id="dropdown-countries">
+                        <div class="selected">Travelling to...</div>
+                        <div class="options">
+                            {% for activity in activities %}
+                                <div class="option">{{ activity.country }} - {{ activity.city }}</div>
+                            {% endfor %}
+                        </div>
                     </div>
+                    <input type="hidden" name="destination" id="selected_option" value="" required>
                     <div class="budget-container">
-                        <input type="text" id="budget-input" name="budget" placeholder="Input your budget - £" autocomplete="off">
+                        <input type="text" id="budget-input" name="budget" placeholder="Input your budget - £" autocomplete="off" required>
                         {{form.budget.errors}}
                     </div>
                     <div class="date-input">
-                        <input type="date" id="date-input" name="date_from">
+                        <input type="date" id="date-input" name="date_from" required>
                         {{form.date_from.errors}}
-                        <input type="date" id="date-input" name="date_to">
+                        <input type="date" id="date-input" name="date_to" required>
                         {{form.date_from.errors}}
                     </div>
                     <button type="submit" id="form-search">Search</button>
@@ -82,12 +62,12 @@
             </div>
         </div>
         <script>
-            $(function () {
-                $("#dropdown-countries").autocomplete({
-                    source: "{% url 'autocomplete_cities' %}",  
-                    minLength: 2,  
-                });
-            });
+            // $(function () {
+            //     $("#dropdown-countries").autocomplete({
+            //         source: "{% url 'autocomplete_cities' %}",  
+            //         minLength: 2,  
+            //     });
+            // });
         </script>
     </body>
 </html>

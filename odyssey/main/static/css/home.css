@@ -84,6 +84,48 @@ body {
     font-family: 'Funnel Display';
 }
 
+#dropdown-countries {
+    position: relative;
+}
+
+.selected {
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.options {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: #c1f4ff;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    left: 0;
+}
+
+.options::-webkit-scrollbar {
+    background-color: #eefbfe;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.options::-webkit-scrollbar-thumb {
+    background-color: #b1e6f1;
+    border-radius: 10px;
+    border: #eefbfe 3px solid;
+    width: 50%;
+}
+
+.option {
+    padding: 3px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #b0ebf9;
+}
+
 #budget-input {
     padding-left: 15px;
 }
