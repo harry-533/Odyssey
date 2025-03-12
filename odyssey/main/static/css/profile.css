@@ -40,7 +40,6 @@ body {
 
 .main-section {
     display: flex;
-    margin-top: 40px;
     gap: 5vw;
 }
 
@@ -49,7 +48,7 @@ body {
     align-items: center;
     width: 35vw;
     height: 25vh;
-    margin-left: 4vw;
+    margin: 40px 0px 5vh 4vw;
     background-color: #eefbfe;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -70,19 +69,128 @@ h2 {
 }
 
 #profile-username {
-    font-size: 40px;
+    font-size: 2vw;
     margin-top: 1vh;
+    margin-bottom: 2px;
+}
+
+#date-login, #date-joined {
+    color: rgb(109, 109, 109);
+    font-size: 0.8vw;
+}
+
+#date-joined {
+    margin-bottom: 10px;
+}
+
+#profile-itinerary-count {
+    font-weight: 550;
+    font-size: 1vw;
 }
 
 
+
+.calendar {
+    background-color: #eefbfe;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 35vw;
+    height: 50vh;
+    margin-left: 4vw;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.calendar::-webkit-scrollbar {
+    background-color: #eefbfe;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.calendar::-webkit-scrollbar-thumb {
+    background-color: #b1e6f1;
+    border-radius: 10px;
+    border: #eefbfe 3px solid;
+    width: 50%;
+}
+
+.month {
+    display: flex;
+}
+
+#month-header {
+    padding-left: 15px;
+    border-bottom: 2px solid #daeaee;
+    width: 92%;
+    margin: 10px auto;
+}
+
+.calendar-itinerary {
+    display: flex;
+    align-items: center;
+    background-color: #cbf5ff;
+    border-radius: 10px;
+    width: 35%;
+    height: 55px;
+    margin-left: 15px;
+}
+
+#calendar-img {
+    border-radius: 10px;
+    width: 2vw;
+    height: 2vw;
+    margin: 0px 5px;
+}
+
+h3 {
+    margin: 0px;
+}
+
+#calendar-title {
+    font-size: 16px;
+}
+
+#calendar-dates {
+    font-size: 12px;
+}
+
+
+
+.user-itineraries {
+    height: 80vh;
+    width: 51.5vw;
+    margin-top: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding: 10px 0px 10px 10px;
+}
+
+.user-itineraries::-webkit-scrollbar {
+    background-color: #eefbfe;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.user-itineraries::-webkit-scrollbar-thumb {
+    background-color: #b1e6f1;
+    border-radius: 10px;
+    border: #eefbfe 3px solid;
+    width: 50%;
+}
 
 .itinerary {
     display: flex;
     background-color: #eefbfe;
     width: 48vw;
     padding: 20px;
+    margin-bottom: 25px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.itinerary:last-child {
+    margin-bottom: 0px;
 }
 
 #itinerary-img {
@@ -99,7 +207,11 @@ h2 {
 }
 
 #itinerary-location {
-    font-size: 40px;
+    font-size: 2.3vw;
+}
+
+#itinerary-location:hover {
+    cursor: pointer;
 }
 
 h4 {
@@ -112,4 +224,17 @@ h4 {
 
 .fa:hover {
     cursor: pointer;
+}
+
+.itinerary-details {
+    margin: 10px 0px 0px 20px
+}
+
+.itinerary-details > * {
+    margin-bottom: 5px;
+    font-size: 1vw;
+}
+
+.activities-title {
+    display: flex;
 }

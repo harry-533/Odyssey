@@ -71,8 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const departure = document.body.dataset.arrive
                 const arrival = document.body.dataset.depart
                 let activities = [];
-                document.querySelectorAll('.chosen-activities').forEach((activity) => {
-                    const current_activity = activity.querySelector('.chosen').classList[1].substring(9)
+                document.querySelectorAll('.chosen').forEach((activity) => {
+                    console.log(activity)
+                    const current_activity = activity.classList[1].substring(9)
                     activities.push(current_activity)
                 })
 
@@ -89,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 fetch("/add-row/", {
                     method: "POST",
                     headers: {
+                        // "X-CSRFToken": getCSRFToken(),
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(data)
@@ -97,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     console.log("Success:", data);
                     alert("Itinerary added");
-                    // location.reload()
+                    location.reload()
                 })
                 .catch(error => {
                     console.error("Error:", error);
@@ -193,3 +195,7 @@ function sortSubmit(sel) {
     activitiesContainer.innerHTML = '';
     activities.forEach(activity => activitiesContainer.appendChild(activity));
 }
+
+// function getCSRFToken() {
+//     return document.querySelector("[name=csrfmiddlewaretoken]").value;
+// }

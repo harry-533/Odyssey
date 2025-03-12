@@ -41,8 +41,23 @@ def result(request, pk):
     return render(request, "result.html", {'journey': journey})
 
 def profile(request):
+    months = {
+        'January': 'January',
+        'February': 'February',
+        'March': 'March',
+        'April': 'April',
+        'May': 'May',
+        'June': 'June',
+        'July': 'July',
+        'August': 'August',
+        'September': 'September',
+        'October': 'October',
+        'November': 'November',
+        'December': 'December',
+    }
+
     if  request.user.is_authenticated:
-        return render(request, "profile.html")
+        return render(request, "profile.html", {'months': months})
     else:
         return redirect('login')
     
@@ -77,6 +92,34 @@ def add_itinerary(request):
 
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
+        
+@csrf_exempt
+def remove_itinerary(request, itinerary_id):
+    if request.method == "POST":
+        row = get_object_or_404(Itinerary, id=itinerary_id)
+        row.delete()
+
+        return JsonResponse({"success": True})
+    
+    return JsonResponse({"success": False, "error": "Invalid request"}, status=400)
+
+def get_itinerary(request, itinerary_id):
+    itinerary = get_object_or_404(Itinerary, id=itinerary_id)
+
+    activity_ids = itinerary.activity_ids
+    itinerary_data = {}
+    for activity_id in activity_ids:
+        activity = get_object_or_404(Activity, image=activity_id)
+        activity_data = {
+            "city": activity.city,
+            "image": activity.image,
+            "price": activity.price,
+            "desc": activity.short_desc
+        }
+
+        itinerary_data[activity.image] = activity_data
+
+    return JsonResponse(itinerary_data)
 
 def custom_login(request):
     if request.method == "POST":
