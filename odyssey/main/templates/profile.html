@@ -8,7 +8,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="{% static 'css/profile.css' %}">
         <link rel="stylesheet" href="{% static 'css/global.css' %}">
-        <!-- <script src="{% static 'js/result.js' %}"></script> -->
+        <script src="{% static 'js/profile.js' %}"></script>
         <link rel="icon" href="{% static 'images/result/Logo3.png' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -16,8 +16,8 @@
     </head>
     <body>
         <div class="navbar">
-            <a id="nav-profile" href="{% url 'login' %}">Profile</a>
-            <a id="nav-calendar" href="{% url 'login' %}">Calendar</a>
+            <a id="nav-profile" href="{% url 'home' %}">home</a>
+            <a id="nav-calendar" href="{% url 'calendar' %}">Calendar</a>
             <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/home/odyssey-title.png' %}"></a>
             <h2 id="welcome">Welcome, {{ user.username }}</h2>
             <a id="nav-logout" href="{% url 'logout' %}">Logout</a>
@@ -28,19 +28,52 @@
                 <h2>{{ user.username }}</h2>
             </div>
             <div class="user-itineraries">
-                {% for itinerary in itineraries %}
-                    {% if itinerary.user_id == user.user_id %}
-                    <div class="itinerary">
-                        <div class="itinerary-title">
-                            <h3 id="itinerary-name">{{ itinerary.name }}</h3>
-                            <h4 id="itinerary-city">{{ itienrary.city }}</h4>
+                {% for activity in activities %}
+                    {% if activity.city|lower|cut:' ' == journey.destination|cut:' ' %}
+                    <div class="activity {{ activity.image }}">
+                        <div class="activity-img">
+                            <img class="img{{ activity.image }}" id="activity-img" src="{% static 'images/result/activityimg/' %}{{ activity.city|lower|cut:' ' }}/{{ activity.image }}.png">
                         </div>
-                        <div class="itinerary-details">
-                            <div class="itinerary-topright">
-                                <h4 id="itinerary-price">{{ itinerary.price }}</h4>
-                                <i class="fa fa-minus" id="right-btn${activity}"></i>
+                        <div class="activity-info">
+                            <div class="activity-header">
+                                <h1 class="title{{ activity.image }}" id="activity-title">{{ activity.title }} - {{ activity.price }}</h1>
+                                <h1 class="btn-{{ activity.image }}" id="add-btn">+</h1>
                             </div>
-                            <h4 id="itinerary-dates">{{ itinerary.depature }} - {{itinerary.arrival }}</h4>
+                            <p class="desc{{ activity.image }}">{{ activity.desc }}</p>
+                            <p class="short-desc{{ activity.image }} " id="short-desc">{{ activity.short_desc }}</p>
+                            <div class="activity-list">
+                                <ul>
+                                    <li class="type{{ activity.image }}">Activity type: {{ activity.category }}</li>
+                                    <li>Group size: {{ activity.group_size }}</li>
+                                    <li class="age{{ activity.image }}">Recommended Age: {{ activity.age }}</li>
+                                </ul>
+                                <ul>
+                                    <li>Duration: {{ activity.duration }}</li>
+                                    <li class="popular{{ activity.image }}" id="popularity">Popularity:  {{ activity.popularity }}</li>
+                                    <li class="access{{ activity.image }}">Accessibility: {{ activity.accessibility }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                {% for itinerary in itineraries %}
+                    {% if itinerary.user_id == user.id %}
+                    <div class="itinerary">
+                        <div class="itinerary-img">
+                            <img class="img" id="itinerary-img" src="">
+                        </div>
+                        <div class="itinerary-info">
+                            <div class="itinerary-title">
+                                <h4 id="itinerary-city">{{ itienrary.city }}</h4>
+                            </div>
+                            <div class="itinerary-details">
+                                <div class="itinerary-topright">
+                                    <h4 id="itinerary-price">{{ itinerary.price }}</h4>
+                                    <i class="fa fa-minus" id="right-btn${activity}"></i>
+                                </div>
+                                <h4 id="itinerary-dates">{{ itinerary.depature }} - {{itinerary.arrival }}</h4>
+                            </div>
                         </div>
                     </div>
                     {% endif %}

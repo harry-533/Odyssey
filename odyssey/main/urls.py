@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    # path('result/<str:city>/<str:budget>', views.result, name='result'),
     path('profile/', views.profile, name='profile'),
     path('calendar/', views.calendar, name='calendar'),
     path('autocomplete/', views.autocomplete_cities, name='autocomplete_cities'),

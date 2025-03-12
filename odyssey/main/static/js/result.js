@@ -63,12 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 pass
             } else {
                 const city = document.body.dataset.city;
-                const currentBudget = document.getElementById('current-budget').textContent;
+                const currentBudget = document.getElementById('current-budget').textContent.split(' - £')[1];
                 const originalBudget = document.body.dataset.budget;
                 const cost = originalBudget - currentBudget;
-                const depature = 'get from home'
-                const arrival = 'get from home'
-                const name = "user input"
+                const departure = document.body.dataset.arrive
+                const arrival = document.body.dataset.depart
                 let activities = [];
                 document.querySelectorAll('.chosen-activities').forEach((activity) => {
                     const current_activity = activity.querySelector('.chosen').classList[1].substring(9)
@@ -77,11 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const data = {
                     user_id: userId,
-                    name: name,
                     activity_ids: activities,
                     city: city,
                     cost: cost,
-                    depature: depature,
+                    departure: departure,
                     arrival: arrival
                 };
 
@@ -95,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     console.log("Success:", data);
+                    alert("Itinerary added");
+                    location.reload()
                 })
                 .catch(error => {
                     console.error("Error:", error);

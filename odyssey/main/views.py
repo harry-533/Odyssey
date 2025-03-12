@@ -40,9 +40,6 @@ def result(request, pk):
 
     return render(request, "result.html", {'journey': journey})
 
-# def result(request, city, budget):
-#     return render(request, "result.html", {'city': city, 'budget': budget})
-
 def profile(request):
     if  request.user.is_authenticated:
         return render(request, "profile.html")
