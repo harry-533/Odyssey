@@ -23,7 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             getActivities(itineraryId).then(rowData => {
                 const activities = rowData;
-                
+                keys = Object.keys(activities)
+                for (let i = 0; i < keys.length; i++) {
+                    
+                }
             });
         }
     })

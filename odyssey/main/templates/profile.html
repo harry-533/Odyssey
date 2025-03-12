@@ -79,10 +79,19 @@
             </div>
         </div>
         <div class="itinerary-activities">
-            <div class="activities-title">
-                <h2>{{ user.username }}&nbsp-&nbsp</h2>
+            <div class="activities-header">
+                <h2 id="activities-title">{{ user.username }} - Bangkok</h2>
+                <h2 id="exit-btn">X</h2>
             </div>
-            
+            <div class="activities">
+                <div class="activitydusit">
+                    <img id="activity-img" src="{% static 'images/result/activityimg/bangkok/dusitpalaceparkwalk.png' %}">
+                    <div class="activity-details">
+                        <h2 id="activity-header">Dusit Palace Park Walk - £0</h2>
+                        <h4 id="activiyt-desc">Enjoy the tranquility of Dusit Palace</h4>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

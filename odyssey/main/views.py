@@ -112,6 +112,7 @@ def get_itinerary(request, itinerary_id):
         activity = get_object_or_404(Activity, image=activity_id)
         activity_data = {
             "city": activity.city,
+            "title": activity.title,
             "image": activity.image,
             "price": activity.price,
             "desc": activity.short_desc
