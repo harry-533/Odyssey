@@ -1,6 +1,7 @@
 {% load static %}
 {% load custom_tags %}
 {% get_itineraries as itineraries %}
+{% get_itinerary_activities request.resolver_match.kwargs.pk as activities %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,57 +24,36 @@
             <a id="nav-logout" href="{% url 'logout' %}">Logout</a>
         </div>
         <div class="main-section">
-            <div class="user-profile">
-                <img id="profile-img" src="{% static 'images/result/activityimg/abudhabi/cornichebeach.png' %}">
-                <h2>{{ user.username }}</h2>
+            <div class="left-section">
+                <div class="user-profile">
+                    <img id="profile-img" src="{% static 'images/result/activityimg/abudhabi/cornichebeach.png' %}">
+                    <div class="user-details">
+                        <h2 id="profile-username">{{ user.username }}</h2> 
+                        <p id="date-login">Last login: {{ user.last_login }}</p>
+                        <p id="date-joined">Date joined: {{ user.date_joined }}</p>
+                        <p id="profile-itinerary-count">Itineraries: {{ itineraries|length }}</p>
+                    </div>
+                </div>
+                <div class="calendar">
+
+                </div>
             </div>
             <div class="user-itineraries">
-                {% for activity in activities %}
-                    {% if activity.city|lower|cut:' ' == journey.destination|cut:' ' %}
-                    <div class="activity {{ activity.image }}">
-                        <div class="activity-img">
-                            <img class="img{{ activity.image }}" id="activity-img" src="{% static 'images/result/activityimg/' %}{{ activity.city|lower|cut:' ' }}/{{ activity.image }}.png">
-                        </div>
-                        <div class="activity-info">
-                            <div class="activity-header">
-                                <h1 class="title{{ activity.image }}" id="activity-title">{{ activity.title }} - {{ activity.price }}</h1>
-                                <h1 class="btn-{{ activity.image }}" id="add-btn">+</h1>
-                            </div>
-                            <p class="desc{{ activity.image }}">{{ activity.desc }}</p>
-                            <p class="short-desc{{ activity.image }} " id="short-desc">{{ activity.short_desc }}</p>
-                            <div class="activity-list">
-                                <ul>
-                                    <li class="type{{ activity.image }}">Activity type: {{ activity.category }}</li>
-                                    <li>Group size: {{ activity.group_size }}</li>
-                                    <li class="age{{ activity.image }}">Recommended Age: {{ activity.age }}</li>
-                                </ul>
-                                <ul>
-                                    <li>Duration: {{ activity.duration }}</li>
-                                    <li class="popular{{ activity.image }}" id="popularity">Popularity:  {{ activity.popularity }}</li>
-                                    <li class="access{{ activity.image }}">Accessibility: {{ activity.accessibility }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
                 {% for itinerary in itineraries %}
                     {% if itinerary.user_id == user.id %}
+                    {% get_itinerary_image itinerary.activity_ids as image %}
                     <div class="itinerary">
                         <div class="itinerary-img">
-                            <img class="img" id="itinerary-img" src="">
+                            <img class="img" id="itinerary-img" src="{% static 'images/result/activityimg/' %}{{ image.city|lower|cut:' ' }}/{{ image.image }}.png">
                         </div>
                         <div class="itinerary-info">
                             <div class="itinerary-title">
-                                <h4 id="itinerary-city">{{ itienrary.city }}</h4>
+                                <h4 id="itinerary-location">{{ itinerary.country }} - {{ itinerary.city }}</h4>
+                                <i class="fa fa-minus" id="right-btn${activity}"></i>
                             </div>
-                            <div class="itinerary-details">
-                                <div class="itinerary-topright">
-                                    <h4 id="itinerary-price">{{ itinerary.price }}</h4>
-                                    <i class="fa fa-minus" id="right-btn${activity}"></i>
-                                </div>
-                                <h4 id="itinerary-dates">{{ itinerary.depature }} - {{itinerary.arrival }}</h4>
-                            </div>
+                            <p>£{{ itinerary.cost }} - {{ itinerary.activity_ids|length }} activities</p>
+                            <p>Departure: {{ itinerary.departure }}</p>
+                            <p>Return: {{ itinerary.arrival }}</p>
                         </div>
                     </div>
                     {% endif %}

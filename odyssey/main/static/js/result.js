@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector(`.weather-${document.body.dataset.city.toLowerCase()}`).style.display = 'flex';
+    console.log(document.body.dataset.city.toLowerCase().replaceAll(" ", ""))
+    document.querySelector(`.weather-${document.body.dataset.city.toLowerCase().replaceAll(" ", "")}`).style.display = 'flex';
 
     document.addEventListener("click", function(event) {
         if (event.target.id.startsWith("add-btn")) {

@@ -36,38 +36,80 @@ body {
     cursor: pointer;
 }
 
+
+
+.main-section {
+    display: flex;
+    margin-top: 40px;
+    gap: 5vw;
+}
+
 .user-profile {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    width: 35vw;
+    height: 25vh;
+    margin-left: 4vw;
+    background-color: #eefbfe;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+p {
+    margin: 0px;
 }
 
 #profile-img {
     border-radius: 200px;
+    margin: 0px 2vw;
+    width: 20vh;
 }
 
-.user-itineraries {
-    overflow-y: auto;
-    scroll-behavior: smooth;
+h2 {
+    margin: 0px;
 }
 
-.user-itineraries::-webkit-scrollbar {
-    background-color: #eefbfe;
-    border-radius: 10px;
-    margin-left: 10px;
+#profile-username {
+    font-size: 40px;
+    margin-top: 1vh;
 }
 
-.user-itineraries::-webkit-scrollbar-thumb {
-    background-color: #b1e6f1;
-    border-radius: 10px;
-    border: #eefbfe 3px solid;
-    width: 50%;
-}
+
 
 .itinerary {
     display: flex;
+    background-color: #eefbfe;
+    width: 48vw;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-.itinerary-topright {
+#itinerary-img {
+    width: 20vh;
+    border-radius: 10px;
+    margin-right: 2vw;
+}
+
+.itinerary-title {
     display: flex;
+    justify-content: space-between;
+    width: 35vw;
+    margin-top: 15px;
+}
+
+#itinerary-location {
+    font-size: 40px;
+}
+
+h4 {
+    margin: 0px;
+}
+
+.fa {
+    font-size: 25px !important; 
+}
+
+.fa:hover {
+    cursor: pointer;
 }
