@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector(`.weather-${document.body.dataset.city}`).style.display = 'flex';
+    document.querySelector(`.weather-${document.body.dataset.city.toLowerCase()}`).style.display = 'flex';
 
     document.addEventListener("click", function(event) {
         if (event.target.id.startsWith("add-btn")) {
@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 pass
             } else {
                 const city = document.body.dataset.city;
+                const country = document.body.dataset.country;
                 const currentBudget = document.getElementById('current-budget').textContent.split(' - £')[1];
                 const originalBudget = document.body.dataset.budget;
                 const cost = originalBudget - currentBudget;
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     console.log("Success:", data);
                     alert("Itinerary added");
-                    location.reload()
+                    // location.reload()
                 })
                 .catch(error => {
                     console.error("Error:", error);

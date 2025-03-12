@@ -15,7 +15,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Odyssey</title>
     </head>
-    <body data-user-id="{{ user.id }}" data-city="{{ journey.city|lower }}" data-budget="{{ journey.budget }}" data-arrive="{{ journey.date_from }}" data-depart="{{ journey.date_to }}">
+    <body data-user-id="{{ user.id }}" data-city="{{ journey.city }}" data-country="{{ journey.country }}" data-budget="{{ journey.budget }}" data-arrive="{{ journey.date_from }}" data-depart="{{ journey.date_to }}">
         <div class="navbar">
             <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
             <a id="nav-profile" href="{% url 'profile' %}">Profile</a>
