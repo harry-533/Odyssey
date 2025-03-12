@@ -46,7 +46,8 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <input type="hidden" name="destination" id="selected_option" value="" required>
+                    <input type="hidden" name="city" id="selected_option" value="" required>
+                    <input type="hidden" name="country" id="selected_option1" value="" required>
                     <div class="budget-container">
                         <input type="text" id="budget-input" name="budget" placeholder="Input your budget - £" autocomplete="off" required>
                         {{form.budget.errors}}

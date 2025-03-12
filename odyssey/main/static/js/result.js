@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     user_id: userId,
                     activity_ids: activities,
                     city: city,
+                    country: country,
                     cost: cost,
                     departure: departure,
                     arrival: arrival

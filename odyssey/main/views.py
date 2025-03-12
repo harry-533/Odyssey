@@ -67,6 +67,7 @@ def add_itinerary(request):
                 user_id=data["user_id"],
                 activity_ids=data["activity_ids"],
                 city=data["city"],
+                country=data["country"],
                 cost=data["cost"],
                 departure=data["departure"],
                 arrival=data["arrival"]
