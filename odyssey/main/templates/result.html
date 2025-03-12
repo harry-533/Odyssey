@@ -1,6 +1,7 @@
 {% load static %}
 {% load custom_tags %}
 {% get_activities as activities %}
+{% get_journey request.resolver_match.kwargs.pk as journey %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Odyssey</title>
     </head>
-    <body data-user-id="{{ user.id }}" data-city="{{ city }}" data-budet="{{ budget }}">
+    <body data-user-id="{{ user.id }}" data-city="{{ journey.destination }}" data-budet="{{ journey.budget }}">
         <div class="navbar">
             <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
             <a id="nav-profile" href="{% url 'login' %}">Profile</a>
@@ -178,7 +179,7 @@
                 </form>
                 <div class="activities">
                     {% for activity in activities %}
-                        {% if activity.city|lower|cut:' ' == city %}
+                        {% if activity.city|lower|cut:' ' == journey.destination|cut:' ' %}
                         <div class="activity {{ activity.image }}">
                             <div class="activity-img">
                                 <img class="img{{ activity.image }}" id="activity-img" src="{% static 'images/result/activityimg/' %}{{ activity.city|lower|cut:' ' }}/{{ activity.image }}.png">
@@ -210,7 +211,7 @@
             </div>
             <div class="right-section">
                 <div class="budget">
-                    <h2 id="current-budget">Budget - £{{ budget }}</h2>
+                    <h2 id="current-budget">Budget - £{{ journey.budget }}</h2>
                     <div class="chosen-activities">
                     </div>
                     <button id="btn-save">Save</button>

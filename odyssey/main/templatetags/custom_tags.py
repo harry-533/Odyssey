@@ -10,3 +10,11 @@ def get_activities():
 @register.simple_tag
 def get_itineraries():
     return Itinerary.objects.all()
+
+@register.simple_tag
+def get_journey(pk):
+    try:
+        journey = JourneyInformation.objects.get(pk=pk)
+        return journey
+    except JourneyInformation.DoesNotExist:
+        return None

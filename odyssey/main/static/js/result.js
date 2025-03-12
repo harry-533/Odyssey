@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const urlCity = window.location.href.split('/')[4];
-    document.querySelector(`.weather-${urlCity}`).style.display = 'flex';
+    document.querySelector(`.weather-${document.body.dataset.city}`).style.display = 'flex';
 
     document.addEventListener("click", function(event) {
         if (event.target.id.startsWith("add-btn")) {
