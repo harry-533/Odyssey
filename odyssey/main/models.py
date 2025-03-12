@@ -13,6 +13,7 @@ class JourneyInformation(models.Model):
 
 class Activity(models.Model):
     city = models.CharField(max_length=64)
+    country = models.CharField(max_length=64, blank=True)
     image = models.CharField(max_length=64, blank=True)
     title = models.CharField(max_length=64)
     price = models.CharField(max_length=8)

@@ -34,11 +34,11 @@
                     {% csrf_token %}
                     {{form.non_field_errors}}
                     <img id="form-logo" src="{% static 'images/result/logo-lb.png' %}">
-                    <div class="destination-container">
+                    <!-- <div class="destination-container">
                         <input type="text" id="dropdown-countries" name="destination" placeholder="Travelling to" autocomplete="on">
                         {{form.destination.errors}}
-                    </div>
-                    <!-- <div class="destination-container">
+                    </div> -->
+                    <div class="destination-container">
                         <select id="dropdown-countries" name="destination">
                             <option value="-1" disabled selected>Travelling to</option>
                             <option value="abudhabi">UAE - Abu Dhabi</option>
@@ -66,9 +66,9 @@
                             <option value="bangkok">Thailand - Bangkok</option>
                             {{form.destination.errors}}
                         </select>
-                    </div> -->
+                    </div>
                     <div class="budget-container">
-                        <input type="text" id="budget-input" name="budget" placeholder="Input your budget" autocomplete="off">
+                        <input type="text" id="budget-input" name="budget" placeholder="Input your budget - £" autocomplete="off">
                         {{form.budget.errors}}
                     </div>
                     <div class="date-input">
