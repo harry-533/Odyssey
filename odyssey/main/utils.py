@@ -122,3 +122,17 @@ def fix_database():
         activity.image = re.sub(r'[^a-zA-Z0-9 ]', '', activity.image)
 
         activity.save()
+
+def fix_database2():
+    activities = Activity.objects.all()
+    for activity in activities:
+        city_dict = {"Cape Town": "South Africa", "Abu Dhabi": "UAE", "Melbourne": "Australia", "Venice": "Italy",
+                     "Rio de Janeiro": "Brazil", "Beijing": "China", "Madrid": "Spain", "Moscow": "Russia",
+                     "Berlin": "Germany", "Cairo": "Egypt", "Los Angeles": "USA", "Amsterdam": "Netherlands",
+                     "Shanghai": "China", "Barcelona": "Spain", "Milan": "Italy", "Seoul": "South Korea",
+                     "Tokyo": "Japan", "Istanbul": "Turkey", "New York": "USA", "Singapore": "Singapore",
+                     "London": "UK", "Paris": "France", "Bangkok": "Thailand"
+                    }
+        country = city_dict[activity.city]
+        activity.country = country
+        activity.save()
