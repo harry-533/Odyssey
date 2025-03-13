@@ -238,6 +238,7 @@ h4 {
 
 
 .itinerary-activities {
+    display: none;
     position: fixed;
     background-color: #eefbfe;
     margin: 0px 35vw;
@@ -252,6 +253,11 @@ h4 {
     display: flex;
     margin-bottom: 3vh;
     font-size: 20px;
+    justify-content: space-between;
+}
+
+#title-placeholder {
+    visibility: hidden;
 }
 
 #exit-btn:hover {
@@ -262,6 +268,7 @@ h4 {
     height: 45vh;
     overflow-y: auto;
     scroll-behavior: smooth;
+    padding: 10px;
 }
 
 .activities::-webkit-scrollbar {
@@ -283,6 +290,7 @@ h4 {
     padding: 12px;
     background-color: #cbf5ff;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 #activity-img {

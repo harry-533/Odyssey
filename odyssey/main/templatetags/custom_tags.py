@@ -36,3 +36,25 @@ def get_itinerary_image(activity_ids):
     if type(activity_ids) == list:
         activity = Activity.objects.get(image=activity_ids[0])
     return activity
+
+@register.simple_tag
+def get_full_month(month):
+    if "." in month:
+        month = month.split(".")[0]
+        match month:
+            case "Jan":
+                return "January"
+            case "Feb":
+                return "February"
+            case "Aug":
+                return "August"
+            case "Sep":
+                return "September"
+            case "Oct":
+                return "October"
+            case "Nov":
+                return "November"
+            case "Dec":
+                return "December"
+            
+    return month

@@ -1,7 +1,6 @@
 {% load static %}
 {% load custom_tags %}
 {% get_itineraries as itineraries %}
-{% get_itinerary_activities request.resolver_match.kwargs.pk as activities %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,73 +13,82 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Odyssey</title>
+        <script>
+            function getImageSrc(city, image) {
+                return "{% static 'images/result/activityimg/' %}{{ city }}/{{ image }}.png'";
+            }
+        </script>
     </head>
     <body>
-        <div class="navbar">
-            <a id="nav-profile" href="{% url 'home' %}">home</a>
-            <a id="nav-calendar" href="{% url 'calendar' %}">Calendar</a>
-            <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/home/odyssey-title.png' %}"></a>
-            <h2 id="welcome">Welcome, {{ user.username }}</h2>
-            <a id="nav-logout" href="{% url 'logout' %}">Logout</a>
-        </div>
-        <div class="main-section">
-            <div class="left-section">
-                <div class="user-profile">
-                    <img id="profile-img" src="{% static 'images/result/activityimg/abudhabi/cornichebeach.png' %}">
-                    <div class="user-details">
-                        <h2 id="profile-username">{{ user.username }}</h2> 
-                        <p id="date-login">Last login: {{ user.last_login }}</p>
-                        <p id="date-joined">Date joined: {{ user.date_joined }}</p>
-                        <p id="profile-itinerary-count">Itineraries: {{ itineraries|length }}</p>
+        <div class="main">
+            <div class="navbar">
+                <a id="nav-profile" href="{% url 'home' %}">home</a>
+                <a id="nav-calendar" href="{% url 'calendar' %}">Calendar</a>
+                <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/home/odyssey-title.png' %}"></a>
+                <h2 id="welcome">Welcome, {{ user.username }}</h2>
+                <a id="nav-logout" href="{% url 'logout' %}">Logout</a>
+            </div>
+            <div class="main-section">
+                <div class="left-section">
+                    <div class="user-profile">
+                        <img id="profile-img" src="{% static 'images/result/activityimg/abudhabi/cornichebeach.png' %}">
+                        <div class="user-details">
+                            <h2 id="profile-username">{{ user.username }}</h2> 
+                            <p id="date-login">Last login: {{ user.last_login }}</p>
+                            <p id="date-joined">Date joined: {{ user.date_joined }}</p>
+                            <p id="profile-itinerary-count">Itineraries: {{ itineraries|length }}</p>
+                        </div>
+                    </div>
+                    <div class="calendar">
+                        {% for month, month_name in months.items %}
+                            <h2 id="month-header">{{ month_name }}</h2>
+                            <div class="month">
+                                {% for itinerary in itineraries %}
+                                    {% get_full_month itinerary.departure as departure %}
+                                    {% if month in departure %}
+                                        {% get_itinerary_image itinerary.activity_ids as image %}
+                                        <div class="calendar-itinerary">
+                                            <img id="calendar-img" src="{% static 'images/result/activityimg/' %}{{ image.city|lower|cut:' ' }}/{{ image.image }}.png">
+                                            <div class="calendar-details">
+                                                <h3 id="calendar-title">{{ itinerary.city }}</h3>
+                                                <h4 id="calendar-dates">{{ itinerary.departure }} - {{ itinerary.arrival }}</h4>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="calendar">
-                    {% for month, month_name in months.items %}
-                        <h2 id="month-header">{{ month_name }}</h2>
-                        <div class="month">
-                            {% for itinerary in itineraries %}
-                                {% if month in itinerary.departure %}
-                                    {% get_itinerary_image itinerary.activity_ids as image %}
-                                    <div class="calendar-itinerary">
-                                        <img id="calendar-img" src="{% static 'images/result/activityimg/' %}{{ image.city|lower|cut:' ' }}/{{ image.image }}.png">
-                                        <div class="calendar-details">
-                                            <h3 id="calendar-title">{{ itinerary.city }}</h3>
-                                            <h4 id="calendar-dates">{{ itinerary.departure }} - {{ itinerary.arrival }}</h4>
-                                        </div>
+                <div class="user-itineraries">
+                    {% for itinerary in itineraries %}
+                        {% if itinerary.user_id == user.id %}
+                            {% get_itinerary_image itinerary.activity_ids as image %}
+                            <div class="itinerary">
+                                <div class="itinerary-img">
+                                    <img class="img" id="itinerary-img" src="{% static 'images/result/activityimg/' %}{{ image.city|lower|cut:' ' }}/{{ image.image }}.png">
+                                </div>
+                                <div class="itinerary-info">
+                                    <div class="itinerary-title">
+                                        <h4 class="{{itinerary.id}}" id="itinerary-location">{{ itinerary.country }} - {{ itinerary.city }}</h4>
+                                        <i class="fa fa-minus" id=right-btn{{itinerary.id}}></i>
                                     </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
+                                    <div class="itinerary-details">
+                                        <p>Total cost: £{{ itinerary.cost }} - {{ itinerary.activity_ids|length }} activities</p>
+                                        <p>Departure: {{ itinerary.departure }}</p>
+                                        <p>Return: {{ itinerary.arrival }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
-            </div>
-            <div class="user-itineraries">
-                {% for itinerary in itineraries %}
-                    {% if itinerary.user_id == user.id %}
-                        {% get_itinerary_image itinerary.activity_ids as image %}
-                        <div class="itinerary">
-                            <div class="itinerary-img">
-                                <img class="img" id="itinerary-img" src="{% static 'images/result/activityimg/' %}{{ image.city|lower|cut:' ' }}/{{ image.image }}.png">
-                            </div>
-                            <div class="itinerary-info">
-                                <div class="itinerary-title">
-                                    <h4 class="{{itinerary.id}}" id="itinerary-location">{{ itinerary.country }} - {{ itinerary.city }}</h4>
-                                    <i class="fa fa-minus" id=right-btn{{itinerary.id}}></i>
-                                </div>
-                                <div class="itinerary-details">
-                                    <p>Total cost: £{{ itinerary.cost }} - {{ itinerary.activity_ids|length }} activities</p>
-                                    <p>Departure: {{ itinerary.departure }}</p>
-                                    <p>Return: {{ itinerary.arrival }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
             </div>
         </div>
         <div class="itinerary-activities">
             <div class="activities-header">
-                <h2 id="activities-title">{{ user.username }} - Bangkok</h2>
+                <h2 id="title-placeholder"></h2>
+                <h2 id="activities-title">{{ user.username }}&nbsp-&nbsp</h2>
                 <h2 id="exit-btn">X</h2>
             </div>
             <div class="activities">

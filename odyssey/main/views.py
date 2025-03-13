@@ -111,6 +111,7 @@ def get_itinerary(request, itinerary_id):
     for activity_id in activity_ids:
         activity = get_object_or_404(Activity, image=activity_id)
         activity_data = {
+            "user_id": activity.user_id,
             "city": activity.city,
             "title": activity.title,
             "image": activity.image,
