@@ -17,8 +17,8 @@
     <body data-username="{{ user.username }}">
         <div class="main">
             <div class="navbar">
-                <a id="nav-profile" href="{% url 'home' %}">home</a>
-                <a id="nav-calendar" href="{% url 'calendar' %}">Calendar</a>
+                <a id="nav-calendar" href="{% url 'home' %}">Home</a>
+                <a id="nav-profile" href="{% url 'profile' %}">Profile</a>
                 <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/home/odyssey-title.png' %}"></a>
                 <h2 id="welcome">Welcome, {{ user.username }}</h2>
                 <a id="nav-logout" href="{% url 'logout' %}">Logout</a>

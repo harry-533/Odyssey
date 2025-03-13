@@ -60,12 +60,6 @@ def profile(request):
         return render(request, "profile.html", {'months': months})
     else:
         return redirect('login')
-    
-def calendar(request):
-    if  request.user.is_authenticated:
-        return render(request, "calendar.html")
-    else:
-        return redirect('login')
 
 def autocomplete_cities(request):
     query = request.GET.get('term', '').lower()

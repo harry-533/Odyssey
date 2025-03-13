@@ -18,8 +18,8 @@
     <body data-user-id="{{ user.id }}" data-city="{{ journey.city }}" data-country="{{ journey.country }}" data-budget="{{ journey.budget }}" data-arrive="{{ journey.date_from }}" data-depart="{{ journey.date_to }}">
         <div class="navbar">
             <a href="{% url 'home' %}"><img id="nav-logo" src="{% static 'images/result/logo-lb.png' %}"></a>
+            <a id="nav-calendar" href="{% url 'home' %}">Home</a>
             <a id="nav-profile" href="{% url 'profile' %}">Profile</a>
-            <a id="nav-calendar" href="{% url 'calendar' %}">Calendar</a>
             <input type="text" id="search-bar" placeholder="search">
             {% if user.is_authenticated %}
                 <h2 id="welcome">Welcome, {{ user.username }}</h2>
