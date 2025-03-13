@@ -1,9 +1,10 @@
 body {
     font-family: 'Funnel Display';
-    background-image: url("../images/home/bg.png");
+    background-image: url("../images/home/bgn.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    min-height: 100vh;
 }
 
 .navbar {
