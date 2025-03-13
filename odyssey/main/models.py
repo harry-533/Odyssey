@@ -1,5 +1,7 @@
 from django.db import models
+from django.utils.timezone import now
 from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 
@@ -10,6 +12,12 @@ class JourneyInformation(models.Model):
     budget = models.IntegerField(default=0)
     date_from = models.DateField()
     date_to = models.DateField()
+
+    def clean(self):
+        if self.date_from < now().date():
+            raise ValidationError('Please only enter dates in the future')
+        if self.date_from > self.date_to:
+            raise ValidationError('Please ensure the dates are in the correct order')
 
     def __str__(self):
         return f"{self.id} | {self.city} with a budget of {self.budget}"
