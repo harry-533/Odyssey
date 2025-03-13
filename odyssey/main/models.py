@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
+
 
 class JourneyInformation(models.Model):
     letter_and_space = RegexValidator('^[A-Za-z ]+$', 'Please only enter letters.')
@@ -41,3 +43,10 @@ class Itinerary(models.Model):
 
     def __str__(self):
         return f"{self.id} | {self.city} - £{self.cost}"
+    
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile/', default='default.png')
+
+    def __str__(self):
+        return f'{self.user.username} Profile'

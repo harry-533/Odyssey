@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import JourneyInformation
+from .models import JourneyInformation, Profile
 
 class JourneyInformationForm(forms.ModelForm):
     class Meta:
@@ -13,3 +13,8 @@ class JourneyInformationForm(forms.ModelForm):
             cleaned_data[field] = value
             # cleaned_data[field] = value.lower() if isinstance(value, str) else value
         return cleaned_data
+    
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']

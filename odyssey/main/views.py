@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import JourneyInformationForm
+from .forms import JourneyInformationForm, ProfileUpdateForm
 from .models import JourneyInformation, Itinerary, Activity
 from .utils import cities
 from django.contrib.auth.models import User
@@ -58,6 +58,35 @@ def profile(request):
 
     if  request.user.is_authenticated:
         return render(request, "profile.html", {'months': months})
+    else:
+        return redirect('login')
+    
+def profile(request):
+    months = {
+        'January': 'January',
+        'February': 'February',
+        'March': 'March',
+        'April': 'April',
+        'May': 'May',
+        'June': 'June',
+        'July': 'July',
+        'August': 'August',
+        'September': 'September',
+        'October': 'October',
+        'November': 'November',
+        'December': 'December',
+    }
+
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileUpdateForm(instance=request.user.profile)
+
+    if  request.user.is_authenticated:
+        return render(request, "profile.html", {'months': months, 'form': form})
     else:
         return redirect('login')
 

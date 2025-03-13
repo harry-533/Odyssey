@@ -64,6 +64,11 @@ p {
     width: 20vh;
 }
 
+#profile-img:hover {
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
 h2 {
     margin: 0px;
 }
@@ -88,6 +93,9 @@ h2 {
     font-size: 1vw;
 }
 
+#img-form {
+    display: none;
+}
 
 
 .calendar {

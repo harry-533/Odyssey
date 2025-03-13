@@ -61,6 +61,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const body = document.querySelector('.main');
             body.style.filter = 'none'
         }
+
+        if (event.target.id == "profile-img") {
+            const userDetails = document.querySelector('.user-details');
+            const imageForm = document.getElementById('img-form');
+
+            if (userDetails.style.display == 'block') {
+                userDetails.style.display = 'none';
+                imageForm.style.display = 'block';
+            } else {
+                userDetails.style.display = 'block';
+                imageForm.style.display = 'none';
+            }
+        }
     })
 })
 
