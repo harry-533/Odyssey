@@ -13,13 +13,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Odyssey</title>
-        <script>
-            function getImageSrc(city, image) {
-                return "{% static 'images/result/activityimg/' %}{{ city }}/{{ image }}.png'";
-            }
-        </script>
     </head>
-    <body>
+    <body data-username="{{ user.username }}">
         <div class="main">
             <div class="navbar">
                 <a id="nav-profile" href="{% url 'home' %}">home</a>
@@ -92,13 +87,6 @@
                 <h2 id="exit-btn">X</h2>
             </div>
             <div class="activities">
-                <div class="activitydusit">
-                    <img id="activity-img" src="{% static 'images/result/activityimg/bangkok/dusitpalaceparkwalk.png' %}">
-                    <div class="activity-details">
-                        <h2 id="activity-header">Dusit Palace Park Walk - £0</h2>
-                        <h4 id="activiyt-desc">Enjoy the tranquility of Dusit Palace</h4>
-                    </div>
-                </div>
             </div>
         </div>
     </body>

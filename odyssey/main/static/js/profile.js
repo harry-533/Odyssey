@@ -19,24 +19,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (event.target.id == "itinerary-location") {
+            document.querySelector('.activities').innerHTML = '';
+
+
             itineraryId = event.target.classList[0]
             
             getActivities(itineraryId).then(rowData => {
                 const activities = document.querySelector('.itinerary-activities');
                 keys = Object.keys(rowData);
                 let city = rowData[keys[0]]['city'];
-                activities.getElementsById('activities-title').textContent += `${city}`
+                activities.querySelector('#activities-title').textContent = `${document.body.dataset.username} - ${city}`;
                 for (let i = 0; i < keys.length; i++) {
                     let title = rowData[keys[i]]['title'];
                     let price = rowData[keys[i]]['price'];
                     let desc = rowData[keys[i]]['desc'];
-                    let image = getImageSrc(city, rowData[keys[i]]['image']);
+                    let image = rowData[keys[i]]['image'];
+                    let imageSrc = `/static/images/result/activityimg/${city.toLowerCase()}/${image}.png`
 
-                    document.querySelector('.chosen-activities').innerHTML += `
-                        <div class="activity${image}">
-                            <img id="activity-img" src="${image}">
+                    document.querySelector('.activities').innerHTML += `
+                        <div class="activity">
+                            <img id="activity-img" src="${imageSrc}">
                             <div class="activity-details">
-                                <h2 id="activity-header">${title} - £${price}</h2>
+                                <h2 id="activity-header">${title} - ${price}</h2>
                                 <h4 id="activiyt-desc">${desc}</h4>
                             </div>
                         </div>`;
