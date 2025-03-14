@@ -2,6 +2,8 @@ body {
     font-family: 'Funnel Display';
     background-image: url("../images/result/bg.png");
     background-size: cover;
+    overflow-y: hidden;
+    min-height: 100vh;
 }
 
 .navbar {

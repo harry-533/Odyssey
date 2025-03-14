@@ -2,6 +2,8 @@ body {
     font-family: 'Funnel Display';
     background-image: url("../images/result/bg.png");
     background-size: cover;
+    overflow-y: hidden;
+    min-height: 100vh;
 }
 
 /* Start of Navbar */
@@ -83,6 +85,7 @@ h2 {
     border-radius: 10px;
     margin: 25px 0.5% 20px 0.5%;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    height: 56.4vh;
 }
 
 #filter-title {
@@ -290,7 +293,7 @@ p {
 .chosen-activities {
     margin-top: 35px;
     margin: 35px auto 0px auto;
-    height: 72%;
+    height: 63vh;
     width: 92%;
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -374,3 +377,9 @@ p {
 }
 
 /* End of right section */
+
+@media (max-width: 1810px) {
+    #ida02c618db9d00, #idb65e412642008, #ide6cd246ebd5b2, #id340edac14ac82, #id6de87a3292499, #id1d4b88a62b80a, #id9f2b4df5843f4, #id3dfed99993d2d, #id5d5f968402d7c, #id28b9ca8f2473a, #idab85318ae83c6, #id50db2850d32aa, #id7da37563cd6e7, #ide7e9e9b1643, #idd8b187fcfcd2c, #idf7b25057946df, #idb51db1ca24d0c, #id52b3c694eb1a3, #id677b46855222c, #idb900f613e1c28, #idafb75906aef33, #id1cfc5e7639cd2, #id2c63c70d866dd {
+        display: none !important;
+    }
+}
