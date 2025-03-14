@@ -2,7 +2,6 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JourneyInformationForm, ProfileUpdateForm
 from .models import JourneyInformation, Itinerary, Activity
-from .utils import cities
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -39,27 +38,6 @@ def result(request, pk):
     journey = get_object_or_404(JourneyInformation, pk=pk)
 
     return render(request, "result.html", {'journey': journey})
-
-def profile(request):
-    months = {
-        'January': 'January',
-        'February': 'February',
-        'March': 'March',
-        'April': 'April',
-        'May': 'May',
-        'June': 'June',
-        'July': 'July',
-        'August': 'August',
-        'September': 'September',
-        'October': 'October',
-        'November': 'November',
-        'December': 'December',
-    }
-
-    if  request.user.is_authenticated:
-        return render(request, "profile.html", {'months': months})
-    else:
-        return redirect('login')
     
 def profile(request):
     months = {
@@ -88,11 +66,6 @@ def profile(request):
             return render(request, "profile.html", {'months': months, 'form': form})
     else:
         return redirect('login')
-
-def autocomplete_cities(request):
-    query = request.GET.get('term', '').lower()
-    results = [city for city in cities if query in city.lower()][:5]
-    return JsonResponse(results, safe=False)
 
 @csrf_exempt
 def add_itinerary(request):

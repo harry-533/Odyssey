@@ -7,7 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('result/<int:pk>/', views.result, name='result'),
     path('profile/', views.profile, name='profile'),
-    path('autocomplete/', views.autocomplete_cities, name='autocomplete_cities'),
     path('login/', views.custom_login, name='login'),
     path('register/', views.custom_register, name='register'),
     path('logout/', views.logout_view, name='logout'),

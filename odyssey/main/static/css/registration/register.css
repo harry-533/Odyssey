@@ -1,8 +1,13 @@
 body {
     font-family: 'Funnel Display';
-    background-image: url("../../images/result/bg.png");
+    background-image: url("../../images/registration/bg2.png");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    overflow-y: hidden;
 }
+
 
 /* Start of Navbar */
 
@@ -43,6 +48,7 @@ body {
 
 #username, #password, #email {
     width: 20vw;
+    min-width: 250px;
     box-sizing: border-box; 
     border-radius: 5px;
     height: 35px;
@@ -58,12 +64,13 @@ body {
 
 .register-btn {
     width: 60%;
+    min-width: 120px;
     padding: 10px;
-    font-size: 25px;
+    font-size: 1.3vw;
     background: #8aeaff;
+    margin-top: 30px;
     border: none;
     border-radius: 10px;
-    margin-top: 5%;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     font-family: 'Funnel Display';
 }
@@ -82,15 +89,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 120px;
+    margin-right: 45vw;
 }
 
 #main-form {
     display: flex;
     width: 30vw;
+    min-width: 400px;
     height: 30vw;
+    min-height: 400px;
     flex-direction: column;
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 20px;
     align-items: center;
     justify-content: center;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
@@ -99,15 +109,8 @@ body {
 
 #form-logo {
     width: 45%;
-    margin: 15% 0px 2% 0px;
+    margin: 15% 0px 0% 0px;
     filter: brightness(0%);
-}
-
-#main-image {
-    margin-top: 5px;
-    border-radius: 20px 0px 0px 20px;
-    height: 30vw;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-options {

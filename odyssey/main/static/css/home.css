@@ -18,8 +18,9 @@ body {
 }
 
 #nav-logo {
-    width: 10vw;
+    width: 170px;
     margin: 10px 120px 0px 120px;
+    filter: brightness(0%);
 }
 
 #nav-profile, #nav-calendar, #nav-register, #nav-login, #nav-logout, #welcome {
@@ -36,23 +37,15 @@ body {
 
 #nav-profile:hover, #nav-calendar:hover, #nav-register:hover, #nav-login:hover, #nav-logout:hover {
     background-color: #93ebff;
-
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-}
-
-#nav-title {
-    font-size: 18px;
-    margin: 0px 10% 0px 10%;
-    font-family: 'Delius Swash Caps';
-    color: #def9ff;
 }
 
 .main-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 15vh;
 }
 
 #form-logo {
@@ -68,7 +61,8 @@ body {
     justify-content: center;
     background-color: #def9ff;
     padding: 40px;
-    margin-left: 700px;
+    margin-left: 45vw;
+    width: 500px;
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
 }
 

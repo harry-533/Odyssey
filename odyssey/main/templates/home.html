@@ -34,10 +34,6 @@
                     {% csrf_token %}
                     {{form.non_field_errors}}
                     <img id="form-logo" src="{% static 'images/result/logo-lb.png' %}">
-                    <!-- <div class="destination-container">
-                        <input type="text" id="dropdown-countries" name="destination" placeholder="Travelling to" autocomplete="on" required>
-                        {{form.destination.errors}}
-                    </div> -->
                     <div id="dropdown-countries">
                         <div class="selected">Travelling to...</div>
                         <div class="options">
@@ -62,13 +58,5 @@
                 </form>
             </div>
         </div>
-        <script>
-            // $(function () {
-            //     $("#dropdown-countries").autocomplete({
-            //         source: "{% url 'autocomplete_cities' %}",  
-            //         minLength: 2,  
-            //     });
-            // });
-        </script>
     </body>
 </html>
