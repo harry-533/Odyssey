@@ -44,16 +44,18 @@
                             <h2 id="month-header">{{ month_name }}</h2>
                             <div class="month">
                                 {% for itinerary in itineraries %}
-                                    {% get_full_month itinerary.departure as departure %}
-                                    {% if month in departure %}
-                                        {% get_itinerary_image itinerary.activity_ids as image %}
-                                        <div class="calendar-itinerary">
-                                            <img id="calendar-img" src="{% static 'images/result/activityimg/' %}{{ image.city|lower|cut:' ' }}/{{ image.image }}.png">
-                                            <div class="calendar-details">
-                                                <h3 id="calendar-title">{{ itinerary.city }}</h3>
-                                                <h4 id="calendar-dates">{{ itinerary.departure }} - {{ itinerary.arrival }}</h4>
+                                    {% if itinerary.user_id == user.id %}
+                                        {% get_full_month itinerary.departure as departure %}
+                                        {% if month in departure %}
+                                            {% get_itinerary_image itinerary.activity_ids as image %}
+                                            <div class="calendar-itinerary">
+                                                <img id="calendar-img" src="{% static 'images/result/activityimg/' %}{{ image.city|lower|cut:' ' }}/{{ image.image }}.png">
+                                                <div class="calendar-details">
+                                                    <h3 id="calendar-title">{{ itinerary.city }}</h3>
+                                                    <h4 id="calendar-dates">{{ itinerary.departure }} - {{ itinerary.arrival }}</h4>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                             </div>
