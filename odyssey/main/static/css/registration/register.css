@@ -42,7 +42,7 @@ body {
 /* End of Navbar */
 
 #username, #password, #email {
-    width: 70%;
+    width: 20vw;
     box-sizing: border-box; 
     border-radius: 5px;
     height: 35px;
@@ -57,7 +57,7 @@ body {
 }
 
 .register-btn {
-    width: 40%;
+    width: 60%;
     padding: 10px;
     font-size: 25px;
     background: #8aeaff;
@@ -99,7 +99,7 @@ body {
 
 #form-logo {
     width: 45%;
-    margin-bottom: 10%;
+    margin: 15% 0px 2% 0px;
     filter: brightness(0%);
 }
 
@@ -108,4 +108,11 @@ body {
     border-radius: 20px 0px 0px 20px;
     height: 30vw;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
 }

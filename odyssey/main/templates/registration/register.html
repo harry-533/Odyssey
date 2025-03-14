@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/registration/register.css' %}">
     <link rel="icon" href="{% static 'images/result/Logo3.png' %}">
     <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
                         <p class="error-message">{{ message }}</p>
                     {% endfor %}
                 {% endif %}
-                <form method="post">
+                <form class="form-options" method="post">
                     {% csrf_token %}
                     <input type="text" id="email" name="email" placeholder="Email" required>
                     <input type="text" id="username" name="username" placeholder="Username" required>
