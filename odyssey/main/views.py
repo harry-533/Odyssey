@@ -55,6 +55,8 @@ def profile(request):
         'December': 'December',
     }
 
+    itineraries = Itinerary.objects.filter(user_id=request.user.id)
+
     if  request.user.is_authenticated:
         if request.method == 'POST':
             form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -63,7 +65,7 @@ def profile(request):
                 return redirect('profile')
         else:
             form = ProfileUpdateForm(instance=request.user.profile)
-            return render(request, "profile.html", {'months': months, 'form': form})
+            return render(request, "profile.html", {'months': months, 'user_itineraries': itineraries, 'form': form})
     else:
         return redirect('login')
 

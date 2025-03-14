@@ -31,7 +31,7 @@
                             <h2 id="profile-username">{{ user.username }}</h2> 
                             <p id="date-login">Last login: {{ user.last_login }}</p>
                             <p id="date-joined">Date joined: {{ user.date_joined }}</p>
-                            <p id="profile-itinerary-count">Itineraries: {{ itineraries|length }}</p>
+                            <p id="profile-itinerary-count">Itineraries: {{ user_itineraries|length }}</p>
                         </div>
                         <form id="img-form" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
