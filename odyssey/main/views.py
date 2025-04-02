@@ -6,7 +6,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from .models import Profile
+from PIL import Image
+import os
 import json
+from django.conf import settings
 
 
 def home(request):
@@ -39,6 +43,21 @@ def result(request, pk):
 
     return render(request, "result.html", {'journey': journey})
     
+def resize_image(image_path):
+    img = Image.open(image_path)
+    width, height = img.size
+
+    # Make it square by cropping
+    min_side = min(width, height)
+    left = (width - min_side) / 2
+    top = (height - min_side) / 2
+    right = (width + min_side) / 2
+    bottom = (height + min_side) / 2
+
+    img = img.crop((left, top, right, bottom))
+    img = img.resize((300, 300))
+    img.save(image_path)
+
 def profile(request):
     months = {
         'January': 'January',
@@ -59,9 +78,14 @@ def profile(request):
 
     if  request.user.is_authenticated:
         if request.method == 'POST':
-            form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+            form = ProfileUpdateForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                profile = Profile.objects.get(user=request.user)
+                profile.image = form.cleaned_data["image"]
+                profile.save()
+
+                image_path = os.path.join(settings.MEDIA_ROOT, str(profile.image))
+                resize_image(image_path)
                 return redirect('profile')
         else:
             form = ProfileUpdateForm(instance=request.user.profile)
