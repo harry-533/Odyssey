@@ -47,7 +47,6 @@ def resize_image(image_path):
     img = Image.open(image_path)
     width, height = img.size
 
-    # Make it square by cropping
     min_side = min(width, height)
     left = (width - min_side) / 2
     top = (height - min_side) / 2
@@ -153,7 +152,7 @@ def custom_login(request):
             login(request, user)
             return redirect("home")
         else:
-            messages.error(request, "Invalid username or password.")
+            messages.error(request, "Invalid username or password")
     
     return render(request, "registration/login.html")
 
@@ -163,10 +162,12 @@ def custom_register(request):
         email = request.POST["email"]
         password = request.POST["password"]
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already taken.")
+        if ('@' not in email) or ('.' not in email):
+            messages.error(request, "Invalid email")
+        elif User.objects.filter(username=username).exists():
+            messages.error(request, "Username already taken")
         elif User.objects.filter(email=email).exists():
-            messages.error(request, "Email already registered.")
+            messages.error(request, "Email already registered")
         else:
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
