@@ -96,7 +96,7 @@ h2 {
 #dropdown {
     width: 80%;
     height: 40px;
-    margin: 22.5px auto 22.5px auto;
+    margin: 30px auto 30px auto;
     border: #acf0ff 1px solid;
     border-radius: 10px;
     font-size: 16px;
@@ -117,8 +117,8 @@ h2 {
 #price-dropdown-left, #price-dropdown-right {
     width: 38%;
     height: 40px;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     border: #acf0ff 1px solid;
     border-radius: 10px;
     font-size: 16px;

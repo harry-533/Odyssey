@@ -110,15 +110,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const fitlerForm = document.getElementById('filter-form');
 
-    fitlerForm.addEventListener('submit', function(event) {
+    fitlerForm.addEventListener('change', function() {
         event.preventDefault();
+        // fitlerForm.submit();
 
         const minPrice = Number(document.querySelector('#price-dropdown-left').value);
         const maxPrice = Number(document.querySelector('#price-dropdown-right').value);
         const activityType = document.querySelector('#dropdown:nth-of-type(1)').value;
         const minAccessibility = Number(document.querySelector('#dropdown:nth-of-type(2)').value);
         const minPopularity = Number(document.querySelector('#dropdown:nth-of-type(3)').value);
-        document.getElementById("filter-form").reset();
+        // document.getElementById("filter-form").reset();
 
         document.querySelectorAll('.activity').forEach((activity) => {
             const current_activity = activity.classList[1]
@@ -138,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
             popularity = popularity.split('⭐').length - 1
 
             if (price < minPrice || price > maxPrice || popularity < minPopularity || (type != activityType && activityType != 'None') || accessibility < minAccessibility) {
+                console.log(2)
                 activity.style.display = 'none'
             }
         })
