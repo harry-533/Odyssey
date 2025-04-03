@@ -11,14 +11,16 @@ cities = [
         'Abu Dhabi', 'Cape Town'
     ]
 
+# Function that queries the LLM and then stores the response in the database
 def get_activities():
+    # Ollama ran localy with the mistral model
     client = ollama.Client()
-
     model = "mistral"
 
+    # Loops through all the cities to seperateley store the activities for each city
     for i in cities:
-        print(i)
         all_activities = {}
+        # Prompt used to get the specific activities
         prompt = f"""
         I want you to list 30 popular tourist activity in the city of {i}. For each activity, provide the following details in this specific format:
 
@@ -34,11 +36,13 @@ def get_activities():
         """
         response = client.generate(model=model, prompt=prompt)
 
+        # Splits the response so it can be easily stored
         responses = response.response.split("|")
         activity = []
         total_activities = []
         first = True
         count = 0
+        # Loops through the split response and groups the acitvities details
         for j in responses:
             if not first:
                 activity.append(j)
@@ -52,8 +56,10 @@ def get_activities():
 
         all_activities[i] = total_activities
 
+        # Loops through the activities and stores them in the database
         for key, item in all_activities.items():
             for activity in range(len(item)):
+                # Loops through the activitiy details and gets rid of certian chars
                 for detail in range(len(all_activities[key][activity])):
                     if detail == 9:
                         all_activities[key][activity][detail] = all_activities[key][activity][detail].lstrip().rstrip()
@@ -65,7 +71,7 @@ def get_activities():
                     except:
                         pass
 
-                print(item[activity])
+                # Adds the activity to the database assuming no errors
                 try:
                     new_activity = Activity(city = key, title = item[activity][0], image = item[activity][0].replace(" ", "").lower(), price = item[activity][1], 
                                         desc = item[activity][2], short_desc = item[activity][3], category = item[activity][4], 
@@ -76,9 +82,11 @@ def get_activities():
                 except:
                     print('fail')
 
+# Function used to clean the database to remove errors
 def fix_database():
     activities = Activity.objects.all()
 
+    # Loops through the activities to remove errors in details
     for activity in activities:
         if (v_index := activity.title.find('visit')) != -1:
             activity.title = activity.title[:v_index - 1]

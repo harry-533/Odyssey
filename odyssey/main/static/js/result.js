@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Displays the weather widget for the correct city
     document.querySelector(`.weather-${document.body.dataset.city.toLowerCase().replaceAll(" ", "")}`).style.display = 'flex';
 
     document.addEventListener("click", function(event) {
+        // If the button to add the activity to the itinerary is clicked
         if (event.target.id.startsWith("add-btn")) {
             const activity = event.target.className.substring(4);
             var clickedSlide = document.querySelector(`.${activity}`);
             clickedSlide.style.display = 'none'
 
+            // Stores all the activities details
             const imagePath = document.querySelector(`.img${activity}`).getAttribute('src');
             let title = document.querySelector(`.title${activity}`).textContent;
             const type = document.querySelector(`.type${activity}`).textContent;
@@ -16,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title = document.querySelector(`.title${activity}`).textContent.slice(0, (title.indexOf('£')-3));
             const desc = document.querySelector(`.short-desc${activity}`).textContent;
 
+            // Uses the saved details to create a summary that is added to the right section of the page
             document.querySelector('.chosen-activities').innerHTML += `
             <div class="chosen right-sld${activity}">
                 <div class="chosen-img">
@@ -31,25 +35,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>`;
 
+            // Decrements the budget by the cost of the activity
             let currentBudget = document.getElementById('current-budget').textContent;
             currentBudget = Number(currentBudget.slice(10))
             const newBudget = currentBudget - Number(price.slice(1))
             if (newBudget < 0) {
                 document.getElementById('current-budget').style.color = 'red';
             }
-            document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`       
+            document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`
+            
+        // If the delete button of the chosen activity is clicked
         } else if (event.target.id.startsWith("right-btn")) {
             const activity = event.target.id.substring(9);
             var clickedSlide = document.querySelector(`.right-sld${activity}`);
             price = clickedSlide.querySelector('#chosen-detail').textContent;
             endIndex = price.indexOf(',');
             price = price.slice(1, endIndex);
-
+            // Removes the slide that activity that was clicked
             clickedSlide.remove();
 
+            // Displays the activity back in the results section
             leftSlide = document.querySelector(`.${activity}`);
             leftSlide.style.display = 'flex';
 
+            // Increments the budget by the cost of the deleted activity
             let currentBudget = document.getElementById('current-budget').textContent;
             currentBudget = Number(currentBudget.slice(10))
             const newBudget = currentBudget + Number(price);
@@ -57,11 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('current-budget').style.color = 'black';
             }
             document.getElementById('current-budget').innerHTML = `Budget - £${newBudget}`;
+        // If the itinerary save button is clicked
         } else if (event.target.id.startsWith("btn-save")) {
             const userId = document.body.dataset.userId;
+            // If the user is not logged in it cannot be saved
             if (!userId) {
                 pass
+            // If the user is logged in
             } else {
+                // Stores all the information about the itinerary (cost, dates, activities)
                 const city = document.body.dataset.city;
                 const country = document.body.dataset.country;
                 const currentBudget = document.getElementById('current-budget').textContent.split(' - £')[1];
@@ -86,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     arrival: arrival
                 };
 
+                // Adds the itinerary to the database for that user
                 fetch("/add-row/", {
                     method: "POST",
                     headers: {
@@ -110,23 +124,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const fitlerForm = document.getElementById('filter-form');
 
+    // When the filter form is changed it reloads the activities based on the filter
     fitlerForm.addEventListener('change', function() {
-        event.preventDefault();
-        // fitlerForm.submit();
-
+        // Stores the values in the filter form
         const minPrice = Number(document.querySelector('#price-dropdown-left').value);
         const maxPrice = Number(document.querySelector('#price-dropdown-right').value);
         const activityType = document.querySelector('#dropdown:nth-of-type(1)').value;
         const minAccessibility = Number(document.querySelector('#dropdown:nth-of-type(2)').value);
         const minPopularity = Number(document.querySelector('#dropdown:nth-of-type(3)').value);
-        // document.getElementById("filter-form").reset();
-
+        // Loops through all the activities
         document.querySelectorAll('.activity').forEach((activity) => {
             const current_activity = activity.classList[1]
             if (!document.querySelector(`.right-sld${current_activity}`)) {
                 activity.style.display = 'flex'
             }
 
+            // Stores the data from the activity
             let title = activity.querySelector(`.title${current_activity}`).textContent;
             let price = Number(title.slice(title.indexOf('£') + 1));
             let type = activity.querySelector(`.type${current_activity}`).textContent;
@@ -138,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let popularity = activity.querySelector(`.popular${current_activity}`).textContent;
             popularity = popularity.split('⭐').length - 1
 
+            // If the activity falls outside the filter it is hidden
             if (price < minPrice || price > maxPrice || popularity < minPopularity || (type != activityType && activityType != 'None') || accessibility < minAccessibility) {
                 console.log(2)
                 activity.style.display = 'none'
@@ -145,12 +159,16 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
 
+    // Function that checks for a key press
     document.addEventListener('keydown', (event) => {
         const keyPressed = event.key;
+        // If the key pressed is the enter key
         if (keyPressed == 'Enter') {
+            // The value of the Search is stored and the search bar is cleared
             const searchInput = document.getElementById('search-bar').value;
             document.getElementById('search-bar').value = "";
 
+            // Loops through the activities, hides any that do not include the searched term
             document.querySelectorAll('.activity').forEach((activity) => {
                 const currentActivity = activity.classList[1];
                 if (document.querySelector(`.${currentActivity}`).style.display === "none") {
@@ -166,11 +184,13 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 });
 
+// Function to sort the activities
 function sortSubmit(sel) {
     const activitiesContainer = document.querySelector('.activities');
     const activities = Array.from(document.querySelectorAll('.activity'));
     const sortBy = sel;
 
+    // Sorts all the activities based on the chosen sort
     activities.sort((a, b) => {
         if (sortBy == 'low-high') {
             const titleA = a.querySelector('#activity-title').textContent;

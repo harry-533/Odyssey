@@ -14,6 +14,7 @@ from django.conf import settings
 
 
 def home(request):
+    # Handles the home page form, validating the input
     if request.method == 'POST':
         form = JourneyInformationForm(request.POST)
         
@@ -38,11 +39,11 @@ def home(request):
     return render(request, "home.html", {'form': form, 'activities': filtered_activities})
 
 def result(request, pk):
-
     journey = get_object_or_404(JourneyInformation, pk=pk)
 
     return render(request, "result.html", {'journey': journey})
-    
+
+# Function to resize the images used for profile images to avoid errors 
 def resize_image(image_path):
     img = Image.open(image_path)
     width, height = img.size
@@ -75,6 +76,7 @@ def profile(request):
 
     itineraries = Itinerary.objects.filter(user_id=request.user.id)
 
+    # Handles the profile photo update form
     if  request.user.is_authenticated:
         if request.method == 'POST':
             form = ProfileUpdateForm(request.POST, request.FILES)
@@ -94,6 +96,7 @@ def profile(request):
 
 @csrf_exempt
 def add_itinerary(request):
+    # Adds the itinerary based on the user input
     if request.method == "POST":
         try:
             data = json.loads(request.body)
@@ -115,6 +118,7 @@ def add_itinerary(request):
         
 @csrf_exempt
 def remove_itinerary(request, itinerary_id):
+    # Removes the itinerary based on user input
     if request.method == "POST":
         row = get_object_or_404(Itinerary, id=itinerary_id)
         row.delete()
@@ -126,6 +130,7 @@ def remove_itinerary(request, itinerary_id):
 def get_itinerary(request, itinerary_id):
     itinerary = get_object_or_404(Itinerary, id=itinerary_id)
 
+    # Gets the activity details and returns them
     activity_ids = itinerary.activity_ids
     itinerary_data = {}
     for activity_id in activity_ids:
@@ -143,6 +148,7 @@ def get_itinerary(request, itinerary_id):
     return JsonResponse(itinerary_data)
 
 def custom_login(request):
+    # Validates the login input
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -157,6 +163,7 @@ def custom_login(request):
     return render(request, "registration/login.html")
 
 def custom_register(request):
+    # Validates the registration input, creates the account if valid data inputted
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
@@ -176,6 +183,7 @@ def custom_register(request):
 
     return render(request, "registration/register.html")
 
+# Logs the user out
 def logout_view(request):
     logout(request)
     return redirect('home')

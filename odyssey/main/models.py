@@ -4,7 +4,6 @@ from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
-
 class JourneyInformation(models.Model):
     letter_and_space = RegexValidator('^[A-Za-z ]+$', 'Please only enter letters.')
     city = models.CharField(max_length=50, validators=[letter_and_space])
